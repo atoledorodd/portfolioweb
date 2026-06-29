@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Toledo | Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === TICKER / BARRA DE NOTICIAS === */
+        .ticker-bar {
+            background-color: var(--pink);
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            height: 44px;
+            position: relative;
+            margin-bottom: 40px;
+            border-top: 3px solid var(--brown);
+            border-bottom: 3px solid var(--brown);
+        }
+
+
+
+        .ticker-label {
+            background-color: var(--brown);
+            color: var(--pink);
+            font-family: var(--font-main);
+            font-weight: 900;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Pequeño triángulo a la derecha de la etiqueta */
+        .ticker-label::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: 44px solid var(--brown);
+            border-right: 12px solid transparent;
+        }
+
+        .ticker-track {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding-left: 24px;
+        }
+
+        .ticker-content {
+            display: inline-flex;
+            gap: 0;
+            white-space: nowrap;
+            animation: ticker-scroll 22s linear infinite;
+        }
+
+        .ticker-content span {
+            color: var(--brown);
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-right: 80px;
+        }
+
+        /* Separador entre items */
+        .ticker-content span::before {
+            content: '◆';
+            color: var(--brown);
+            margin-right: 80px;
+            font-size: 0.6rem;
+        }
+
+        .ticker-content span:first-child::before {
+            display: none;
+        }
+
+        .ticker-time {
+            background-color: var(--brown);
+            color: var(--pink);
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        @keyframes ticker-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-content {
+                animation: none;
+            }
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 16px 0 10px;
+            color: var(--brown);
+        }
+
+    </style>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Toledo | Website</title>
+    <style>
+        :root {
+            --pink: #ffc4e1;
+            --brown: #3f221b;
+            --cream: #f9f7ed;
+        }
+
+        /* === NUEVO MENÚ DESPLEGABLE (HTML + CSS puro) === */
+        .lang-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-button {
+            background: var(--pink);
+            border: 2px solid var(--brown);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropdown-content {
+            display: none; /* Oculto por defecto */
+            position: absolute;
+            right: 0;
+            background: white;
+            border: 2px solid var(--brown);
+            width: 130px;
+            margin-top: 5px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: var(--brown);
+            font-weight: 600;
+        }
+
+        .dropdown-content a:hover { background: var(--pink); }
+
+        /* Al pasar el ratón por el botón o el contenedor, se muestra el menú */
+        .lang-container:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Resto de tu diseño (mantengo la estructura básica) */
+        body { font-family: 'Poppins', sans-serif; background-color: var(--pink); margin: 0; padding: 40px; }
+    </style>
+</head>
+<body>
+<!-- Selector de idioma -->
+    <div class="lang-container">
+        <div class="lang-button">🌐 <span id="current-lang">ES</span></div>
+        <div class="dropdown-content">
+            <a href="#" onclick="changeLanguage('es')">ES Español</a>
+            <a href="#" onclick="changeLanguage('en')">EN English</a>
+        </div>
+    </div>
+
+</head>
+<body>
+    <!-- 1. HERO -->
+    <div class="container">
+
+        <!-- Barra ticker al estilo 3/24 -->
+        <div class="ticker-bar">
+            <div class="ticker-label">
+                <!-- Logo ATR monograma fino y elegante -->
+                <svg width="52" height="28" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ATR">
+                    <!-- A -->
+                    <line x1="2" y1="26" x2="9" y2="4" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="9" y1="4" x2="16" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="4.5" y1="17" x2="13.5" y2="17" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- T -->
+                    <line x1="21" y1="4" x2="33" y2="4" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="27" y1="4" x2="27" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- R -->
+                    <line x1="38" y1="4" x2="38" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M38 4 Q50 4 50 11 Q50 18 38 18" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                    <line x1="43" y1="18" x2="50" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="ticker-track">
+                <div class="ticker-content" id="ticker-content">
+                    <!-- Los items se duplican para el loop infinito -->
+                    <span>Bridging brands, people and experiences</span>
+                    <span>Estrategia Digital &amp; Social Media</span>
+                    <span>Producción Audiovisual</span>
+                    <span>Formación &amp; Comunidad</span>
+                    <span>Conectando marcas con personas desde Euskadi</span>
+                    <!-- Duplicado para seamless loop -->
+                    <span>Bridging brands, people and experiences</span>
+                    <span>Estrategia Digital &amp; Social Media</span>
+                    <span>Producción Audiovisual</span>
+                    <span>Formación &amp; Comunidad</span>
+                    <span>Conectando marcas con personas desde Euskadi</span>
+                </div>
+            </div>
+            <div class="ticker-time" id="ticker-clock">--:--</div>
+        </div>
+
+        <div class="hero-top">
+            <h1>Anna Toledo</h1>
+            <p class="hero-desc">Transformo visiones en realidades audiovisuales. Mi trabajo no es solo producir, es tender puentes entre tu estrategia de negocio y la forma en la que conectas con tu audiencia. Trabajo con rigor técnico, pero con la mirada puesta en lo que realmente importa: las personas.</p>
+            <div class="hero-top-text">
+                <a href="#work">Explora mi trabajo</a>
+            </div>
+        </div>
+        <img src="foto1.jpg" alt="Anna Toledo" class="hero-image">
+    </div>
+
+    <!-- 2. JOURNEY -->
+    <div class="journey-section">
+        <!-- Contenedor del video -->
+    <div class="journey-left">
+        <div class="video-container">
+            <video autoplay muted loop playsinline poster="tu-imagen-de-portada.jpg" style="width: 100%; border-radius: 10px;">
+                <source src="video1.mov" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </div>
+        <!-- Muevo la cita aquí dentro para que esté debajo del video -->
+        <div class="journey-quote">
+            "La gente olvidará lo que dijiste, la gente olvidará lo que hiciste, pero la gente nunca olvidará cómo la hiciste sentir." — <em>Maya Angelou</em>
+        </div>
+    </div>
+
+    <!-- Contenedor del texto -->
+        <div class="journey-right">
+            <h2>MI trayectoria</h2>
+            <p>Mi carrera empezó en la primera línea: la atención directa al cliente. Fue ahí donde aprendí a escuchar de verdad, una habilidad que más tarde se convirtió en el motor de mi creatividad durante la carrera de Comunicación Audiovisual. Entender qué necesita la gente fue la base sobre la que construí mi experiencia en producción y gestión de crisis. Hoy, aplico toda esa trayectoria en el mundo del marketing y las redes sociales: creando estrategias que, más que vender, conectan, resuelven y aportan valor real. Trabajo con equipos y proyectos donde la coherencia y la honestidad son las reglas del juego.</p>
+        </div>
+    </div>
+
+    <!-- 3. SERVICES -->
+    <div class="services-section">
+        <div class="services-left">
+            <h2>LO QUE PUEDO HACER POR TI</h2>
+        </div>
+        <div class="services-right">
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <div class="service-text">
+                    <h3>Estrategia Digital &amp; Social</h3>
+                    <p>Llevo el marketing de tu marca de principio a fin. Me encargo del calendario editorial, la gestión de redes sociales y la optimización SEO/SEM para que tu presencia online no solo exista, sino que funcione.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <div class="service-text">
+                    <h3>Producción Audiovisual</h3>
+                    <p>Grabo, edito y dirijo contenido audiovisual específico para redes sociales. Mi objetivo es que tus vídeos tengan la calidad técnica que tu marca necesita y el ritmo que los algoritmos piden para retener a la audiencia.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <div class="service-text">
+                    <h3>Formación &amp; Comunidad</h3>
+                    <p>Especialista en formación corporativa y gestión de clientes. Aprovecho mis años de experiencia en atención directa para enseñarte a ti o a tu equipo a gestionar comunidades, resolver crisis y conectar de verdad con quien está al otro lado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. WINS -->
+    <div class="container wins-section" id="work">
+        <h2>LOGROS DE LOS QUE ESTOY ORGULLOSA</h2>
+        <div class="wins-grid">
+            <div class="win-card">
+                <div class="win-img"></div>
+                <div class="win-content">
+                    <h3>Campañas Audiovisuales</h3>
+                    <p>Dirigiendo equipos para crear formatos dinámicos que multiplicaron el engagement.</p>
+                    <a href="#" class="win-btn">Ver Proyecto</a>
+                </div>
+            </div>
+            <div class="win-card">
+                <div class="win-img"></div>
+                <div class="win-content">
+                    <h3>Formación Corporativa</h3>
+                    <p>Liderando talleres y capacitando a equipos con metodologías ágiles y humanas.</p>
+                    <a href="#" class="win-btn">Ver Proyecto</a>
+                </div>
+            </div>
+            <div class="win-card">
+                <div class="win-img"></div>
+                <div class="win-content">
+                    <h3>Crecimiento de Comunidad</h3>
+                    <p>Estrategias de contenido que conectaron creadores con marcas de forma orgánica.</p>
+                    <a href="#" class="win-btn">Ver Proyecto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. TESTIMONIALS -->
+    <div class="testimonials-header">
+        <h2>TESTIMONIOS</h2>
+    </div>
+    <div class="test-grid">
+        <div class="test-card cream">
+            <div class="test-img"></div>
+            <p class="test-text">"Trabajar con Anna es colaborar con alguien que entiende la estrategia a la perfección y aporta una tranquilidad brutal al equipo."</p>
+            <strong>Director de Marketing</strong>
+        </div>
+        <div class="test-card green">
+            <div class="test-img"></div>
+            <p class="test-text">"Su visión para el contenido audiovisual es mágica. Transformó nuestras ideas desordenadas en campañas preciosas y efectivas."</p>
+            <strong>Creadora de Contenido</strong>
+        </div>
+    </div>
+
+    <!-- 6. CONNECT -->
+    <div class="container connect-section">
+        <div class="connect-left">
+            <h2>CONECTEMOS</h2>
+            <p>Cuéntame qué tienes en mente, me encantará ayudarte a darle vida.</p>
+            <div class="contact-box">
+                <p>Email: hola@annatoledo.com</p>
+                <p>LinkedIn: /in/annatoledo</p>
+                <p>Ubicación: Eibar, Euskadi</p>
+            </div>
+        </div>
+        <div class="connect-right">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email">
+            </div>
+            <div class="form-group">
+                <label>Mensaje</label>
+                <textarea></textarea>
+            </div>
+            <button class="submit-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Reloj en tiempo real para el ticker
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('ticker-clock').textContent = h + ':' + m;
+        }
+        updateClock();
+        setInterval(updateClock, 10000);
+    </script>
+
+</body>
+</html>

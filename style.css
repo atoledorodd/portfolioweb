@@ -1,0 +1,452 @@
+/* === PALETA DE COLORES Y VARIABLES === */
+
+/* Estilos para el nuevo selector de idiomas */
+.lang-container { position: absolute; top: 20px; right: 20px; z-index: 1000; }
+.lang-button { cursor: pointer; font-weight: bold; padding: 5px; border: 1px solid #3f221b; border-radius: 5px; }
+.dropdown-content { display: none; position: absolute; right: 0; background: white; border: 1px solid #3f221b; }
+.dropdown-content a { display: block; padding: 5px; text-decoration: none; color: #3f221b; }
+.lang-container:hover .dropdown-content { display: block; }
+
+/* TU CSS ORIGINAL (Asegúrate de tener tus variables o colores definidos aquí) */
+body { background-color: #ffcce5; color: #3f221b; font-family: sans-serif; }
+.hero, .journey, .services, .work, .testimonials, .contact { padding: 40px; }
+/* ... el resto de tu CSS original se mantiene igual aquí abajo ... */
+
+:root {
+    --pink: #ffc4e1;
+    --brown: #3f221b;
+    --cream: #f9f7ed;
+    --green: #b6d545;
+    --font-main: 'Poppins', sans-serif;
+}
+
+/* 1. Reset limpio (Borra lo que tenías antes en *) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--brown);
+    background-color: var(--pink);
+}
+
+h1, h2, h3, h4 {
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    min-width: 0;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+/* === 1. HERO SECTION === */
+.hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: full;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hero-top h1 {
+    font-size: 5rem;
+    max-width: 500px;
+}
+
+.hero-top-text {
+    max-width: 400px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.hero-top-text a {
+    color: var(--brown);
+    text-decoration: underline;
+    font-weight: 900;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover; /* Esto hace que la foto se ajuste bien */
+}
+
+/* === 2. JOURNEY SECTION === */
+.journey-section {
+    display: flex;
+    background-color: var(--cream);
+    flex-wrap: wrap;
+}
+
+/* 1. Aseguramos que el contenedor izquierdo tenga el fondo adecuado */
+.journey-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--brown); /* Recuperamos el color marrón de fondo */
+    min-width: 0;
+}
+
+/* 2. El video debe ser el protagonista arriba */
+.video-container {
+    width: 100%;
+    /* Ajusta este valor fijo para igualar la altura de tu caja de texto si hace falta */
+    height: 400px;
+    margin: 0;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    max-width: 1200px;  /* Ancho máximo uniforme */
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 0;
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    height: 120%;
+    display: block;
+    object-fit: cover; /* Esto rellena el espacio sin deformar */
+    position: absolute;
+    top: -10%; /* Movemos el video hacia arriba para centrar el recorte */
+    left: 0;
+}
+
+/* 3. La cita recupera su estilo sobre el fondo marrón */
+.journey-quote {
+    color: white; /* Texto blanco sobre fondo marrón */
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    max-width: 1200px;  /* Ancho máximo uniforme */
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: auto; /* Empuja el texto hacia abajo si sobra espacio */
+}
+
+.journey-right {
+    flex: 1;
+    min-width: 300px;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    max-width: 1200px;  /* Ancho máximo uniforme */
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.journey-right h2 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* === 3. SERVICES SECTION === */
+.services-section {
+    background-color: var(--green);
+    display: flex;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.services-left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.services-left h2 {
+    font-size: 5rem;
+}
+
+.services-right {
+    flex: 1.5;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.service-card {
+    background-color: var(--cream);
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.service-icon {
+    width: 0px;
+    height: 80px;
+    background-color: var(--pink); 
+}
+
+.service-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+/* === 4. WINS SECTION === */
+.wins-section {
+    background-color: var(--pink);
+    text-align: center;
+    min-width: 0;
+}
+
+.wins-section h2 {
+    font-size: 4rem;
+    margin-bottom: 40px;
+}
+
+.wins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    min-width: 0;
+}
+
+.win-card {
+    background-color: var(--cream);
+}
+
+.win-img {
+    height: 200px;
+    min-width: 0;
+    background-color: #ddd; 
+}
+
+.win-content {
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+}
+
+.win-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.win-btn { /*boton de ver proyecto*/
+    display: inline-block;
+    background-color: var(--brown);
+    color: white;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 9000;
+    border-radius: 30px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+/* === 5. TESTIMONIALS === */
+.testimonials-header {
+    background-color: var(--brown);
+    color: var(--cream);
+    text-align: center;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+}
+
+.testimonials-header h2 {
+    font-size: 4rem;
+}
+
+.test-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.test-card {
+    flex: 1;
+    min-width: 300px;
+    padding: 60px;
+    text-align: center;
+}
+
+.test-card.cream { background-color: var(--cream); }
+.test-card.green { background-color: var(--green); }
+
+.test-img {
+    width: 100%;
+    height: 250px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+}
+
+.test-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+/* === 6. CONNECT SECTION === */
+.connect-section {
+    background-color: var(--pink);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.connect-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.connect-left h2 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.contact-box {
+    background-color: var(--green);
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.connect-right {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--cream);
+    padding: 40px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: none;
+}
+
+.submit-btn {
+    min-width: 0;
+
+
+    background-color: var(--brown);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 15px;
+    border-left: 1px solid #ffc4e1;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    max-width: 1200px;  /* Ancho máximo uniforme */
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+}
+
+.lang-menu {
+    position: relative;
+    cursor: pointer;
+    background: var(--brown);
+    border: 1px solid #ccc;
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    max-width: 1200px;  /* Ancho máximo uniforme */
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 1000;
+}
+
+.selected-lang { display: flex; align-items: center; gap: 5px; }
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #eee;
+    width: 150px;
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.lang-dropdown div { padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    max-width: 1200px;  /* Ancho máximo uniforme */
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box; }
+.lang-dropdown div:hover { background: #f0f0f0; }
+
+/* === REGLA PARA TÍTULOS RESPONSIVE === */
+h1, h2, h3, h4 {
+    /* clamp(minimo, ideal, maximo) hace que se ajuste solo */
+    font-size: clamp(1.8rem, 5vw, 4rem); 
+    word-break: break-word; /* Evita que las palabras largas se salgan de la pantalla */
+}
+
+/* Ajuste específico para que las secciones no se rompan en móvil */
+@media (max-width: 768px) {
+    .hero-top h1 { font-size: 3rem; }
+    .journey-section, .services-section, .connect-section {
+        flex-direction: column;
+    }
+    .journey-right, .services-left, .connect-left {
+    padding: 60px 20px; /* Padding uniforme en todas las secciones */
+    min-width: 0;
+    margin: 0 auto;     /* Centrado automático */
+    box-sizing: border-box;
+    }
+}
