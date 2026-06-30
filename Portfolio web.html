@@ -7,6 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* === LANG SWITCHER === */
+        .lang-container { position: absolute; top: 20px; right: 20px; z-index: 1000; }
+        .lang-button {
+            background: var(--pink);
+            border: 2px solid var(--brown);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            border: 2px solid var(--brown);
+            width: 130px;
+            margin-top: 5px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dropdown-content a { display: block; padding: 10px; text-decoration: none; color: var(--brown); font-weight: 600; }
+        .dropdown-content a:hover { background: var(--pink); }
+        .lang-container:hover .dropdown-content { display: block; }
+
         /* === TICKER / BARRA DE NOTICIAS === */
         .ticker-bar {
             background-color: var(--pink);
@@ -19,9 +47,6 @@
             border-top: 3px solid var(--brown);
             border-bottom: 3px solid var(--brown);
         }
-
-
-
         .ticker-label {
             background-color: var(--brown);
             color: var(--pink);
@@ -38,8 +63,6 @@
             z-index: 2;
             position: relative;
         }
-
-        /* Pequeño triángulo a la derecha de la etiqueta */
         .ticker-label::after {
             content: '';
             position: absolute;
@@ -50,22 +73,8 @@
             border-top: 44px solid var(--brown);
             border-right: 12px solid transparent;
         }
-
-        .ticker-track {
-            flex: 1;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding-left: 24px;
-        }
-
-        .ticker-content {
-            display: inline-flex;
-            gap: 0;
-            white-space: nowrap;
-            animation: ticker-scroll 22s linear infinite;
-        }
-
+        .ticker-track { flex: 1; overflow: hidden; display: flex; align-items: center; padding-left: 24px; }
+        .ticker-content { display: inline-flex; gap: 0; white-space: nowrap; animation: ticker-scroll 22s linear infinite; }
         .ticker-content span {
             color: var(--brown);
             font-family: var(--font-main);
@@ -75,19 +84,8 @@
             text-transform: uppercase;
             padding-right: 80px;
         }
-
-        /* Separador entre items */
-        .ticker-content span::before {
-            content: '◆';
-            color: var(--brown);
-            margin-right: 80px;
-            font-size: 0.6rem;
-        }
-
-        .ticker-content span:first-child::before {
-            display: none;
-        }
-
+        .ticker-content span::before { content: '◆'; color: var(--brown); margin-right: 80px; font-size: 0.6rem; }
+        .ticker-content span:first-child::before { display: none; }
         .ticker-time {
             background-color: var(--brown);
             color: var(--pink);
@@ -101,17 +99,8 @@
             flex-shrink: 0;
             font-variant-numeric: tabular-nums;
         }
-
-        @keyframes ticker-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .ticker-content {
-                animation: none;
-            }
-        }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) { .ticker-content { animation: none; } }
 
         .hero-desc {
             font-size: 1.1rem;
@@ -121,100 +110,31 @@
             margin: 16px 0 10px;
             color: var(--brown);
         }
-
-    </style>
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anna Toledo | Website</title>
-    <style>
-        :root {
-            --pink: #ffc4e1;
-            --brown: #3f221b;
-            --cream: #f9f7ed;
-        }
-
-        /* === NUEVO MENÚ DESPLEGABLE (HTML + CSS puro) === */
-        .lang-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .lang-button {
-            background: var(--pink);
-            border: 2px solid var(--brown);
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: 900;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dropdown-content {
-            display: none; /* Oculto por defecto */
-            position: absolute;
-            right: 0;
-            background: white;
-            border: 2px solid var(--brown);
-            width: 130px;
-            margin-top: 5px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: var(--brown);
-            font-weight: 600;
-        }
-
-        .dropdown-content a:hover { background: var(--pink); }
-
-        /* Al pasar el ratón por el botón o el contenedor, se muestra el menú */
-        .lang-container:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Resto de tu diseño (mantengo la estructura básica) */
-        body { font-family: 'Poppins', sans-serif; background-color: var(--pink); margin: 0; padding: 40px; }
     </style>
 </head>
 <body>
-<!-- Selector de idioma -->
+
+    <!-- Selector de idioma -->
     <div class="lang-container">
         <div class="lang-button">🌐 <span id="current-lang">ES</span></div>
         <div class="dropdown-content">
-            <a href="#" onclick="changeLanguage('es')">ES Español</a>
-            <a href="#" onclick="changeLanguage('en')">EN English</a>
+            <a href="#" onclick="changeLanguage('es'); return false;">ES Español</a>
+            <a href="#" onclick="changeLanguage('en'); return false;">EN English</a>
         </div>
     </div>
 
-</head>
-<body>
     <!-- 1. HERO -->
     <div class="container">
 
         <!-- Barra ticker al estilo 3/24 -->
         <div class="ticker-bar">
             <div class="ticker-label">
-                <!-- Logo ATR monograma fino y elegante -->
                 <svg width="52" height="28" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ATR">
-                    <!-- A -->
                     <line x1="2" y1="26" x2="9" y2="4" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
                     <line x1="9" y1="4" x2="16" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
                     <line x1="4.5" y1="17" x2="13.5" y2="17" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
-                    <!-- T -->
                     <line x1="21" y1="4" x2="33" y2="4" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
                     <line x1="27" y1="4" x2="27" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
-                    <!-- R -->
                     <line x1="38" y1="4" x2="38" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
                     <path d="M38 4 Q50 4 50 11 Q50 18 38 18" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round" fill="none"/>
                     <line x1="43" y1="18" x2="50" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
@@ -222,13 +142,11 @@
             </div>
             <div class="ticker-track">
                 <div class="ticker-content" id="ticker-content">
-                    <!-- Los items se duplican para el loop infinito -->
                     <span>Bridging brands, people and experiences</span>
                     <span>Estrategia Digital &amp; Social Media</span>
                     <span>Producción Audiovisual</span>
                     <span>Formación &amp; Comunidad</span>
                     <span>Conectando marcas con personas desde Euskadi</span>
-                    <!-- Duplicado para seamless loop -->
                     <span>Bridging brands, people and experiences</span>
                     <span>Estrategia Digital &amp; Social Media</span>
                     <span>Producción Audiovisual</span>
@@ -251,21 +169,17 @@
 
     <!-- 2. JOURNEY -->
     <div class="journey-section">
-        <!-- Contenedor del video -->
-    <div class="journey-left">
-        <div class="video-container">
-            <video autoplay muted loop playsinline poster="tu-imagen-de-portada.jpg" style="width: 100%; border-radius: 10px;">
-                <source src="video1.mov" type="video/mp4">
-                Tu navegador no soporta video.
-            </video>
+        <div class="journey-left">
+            <div class="video-container">
+                <video autoplay muted loop playsinline poster="tu-imagen-de-portada.jpg" style="width: 100%; border-radius: 10px;">
+                    <source src="video1.mov" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+            </div>
+            <div class="journey-quote">
+                "La gente olvidará lo que dijiste, la gente olvidará lo que hiciste, pero la gente nunca olvidará cómo la hiciste sentir." — <em>Maya Angelou</em>
+            </div>
         </div>
-        <!-- Muevo la cita aquí dentro para que esté debajo del video -->
-        <div class="journey-quote">
-            "La gente olvidará lo que dijiste, la gente olvidará lo que hiciste, pero la gente nunca olvidará cómo la hiciste sentir." — <em>Maya Angelou</em>
-        </div>
-    </div>
-
-    <!-- Contenedor del texto -->
         <div class="journey-right">
             <h2>MI trayectoria</h2>
             <p>Mi carrera empezó en la primera línea: la atención directa al cliente. Fue ahí donde aprendí a escuchar de verdad, una habilidad que más tarde se convirtió en el motor de mi creatividad durante la carrera de Comunicación Audiovisual. Entender qué necesita la gente fue la base sobre la que construí mi experiencia en producción y gestión de crisis. Hoy, aplico toda esa trayectoria en el mundo del marketing y las redes sociales: creando estrategias que, más que vender, conectan, resuelven y aportan valor real. Trabajo con equipos y proyectos donde la coherencia y la honestidad son las reglas del juego.</p>
@@ -302,51 +216,99 @@
         </div>
     </div>
 
-    <!-- 4. WINS -->
+    <!-- 4. WINS / CARRUSEL DE PROYECTOS -->
     <div class="container wins-section" id="work">
-        <h2>LOGROS DE LOS QUE ESTOY ORGULLOSA</h2>
-        <div class="wins-grid">
-            <div class="win-card">
-                <div class="win-img"></div>
-                <div class="win-content">
-                    <h3>Campañas Audiovisuales</h3>
-                    <p>Dirigiendo equipos para crear formatos dinámicos que multiplicaron el engagement.</p>
-                    <a href="#" class="win-btn">Ver Proyecto</a>
+        <h2>LOGROS Y ÉXITOS</h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow" id="wins-prev" aria-label="Anterior">&#8249;</button>
+            <div class="carousel-viewport">
+                <div class="carousel-track" id="wins-track">
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Campañas Audiovisuales</h3>
+                            <p>Dirigiendo equipos para crear formatos dinámicos que multiplicaron el engagement.</p>
+                            <a href="#" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Formación Corporativa</h3>
+                            <p>Liderando talleres y capacitando a equipos con metodologías ágiles y humanas.</p>
+                            <a href="#" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Crecimiento de Comunidad</h3>
+                            <p>Estrategias de contenido que conectaron creadores con marcas de forma orgánica.</p>
+                            <a href="#" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Lanzamiento de Marca</h3>
+                            <p>Creación de identidad visual y estrategia de salida al mercado para una marca emergente.</p>
+                            <a href="#" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Serie de Vídeo Documental</h3>
+                            <p>Producción de una serie corta que aumentó la notoriedad de marca en redes.</p>
+                            <a href="#" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Programa de Embajadores</h3>
+                            <p>Diseño y gestión de un programa de embajadores de marca con creadores locales.</p>
+                            <a href="#" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="win-card">
-                <div class="win-img"></div>
-                <div class="win-content">
-                    <h3>Formación Corporativa</h3>
-                    <p>Liderando talleres y capacitando a equipos con metodologías ágiles y humanas.</p>
-                    <a href="#" class="win-btn">Ver Proyecto</a>
-                </div>
-            </div>
-            <div class="win-card">
-                <div class="win-img"></div>
-                <div class="win-content">
-                    <h3>Crecimiento de Comunidad</h3>
-                    <p>Estrategias de contenido que conectaron creadores con marcas de forma orgánica.</p>
-                    <a href="#" class="win-btn">Ver Proyecto</a>
-                </div>
-            </div>
+            <button class="carousel-arrow" id="wins-next" aria-label="Siguiente">&#8250;</button>
         </div>
     </div>
 
-    <!-- 5. TESTIMONIALS -->
+    <!-- 5. TESTIMONIALS / CARRUSEL -->
     <div class="testimonials-header">
         <h2>TESTIMONIOS</h2>
     </div>
-    <div class="test-grid">
-        <div class="test-card cream">
-            <div class="test-img"></div>
-            <p class="test-text">"Trabajar con Anna es colaborar con alguien que entiende la estrategia a la perfección y aporta una tranquilidad brutal al equipo."</p>
-            <strong>Director de Marketing</strong>
-        </div>
-        <div class="test-card green">
-            <div class="test-img"></div>
-            <p class="test-text">"Su visión para el contenido audiovisual es mágica. Transformó nuestras ideas desordenadas en campañas preciosas y efectivas."</p>
-            <strong>Creadora de Contenido</strong>
+    <div class="test-carousel-section">
+        <div class="test-carousel-wrapper">
+            <button class="carousel-arrow" id="test-prev" aria-label="Anterior">&#8249;</button>
+            <div class="test-carousel-viewport">
+                <div class="test-carousel-track" id="test-track">
+                    <div class="test-card cream">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Trabajar con Anna es colaborar con alguien que entiende la estrategia a la perfección y aporta una tranquilidad brutal al equipo."</p>
+                        <strong>Director de Marketing</strong>
+                    </div>
+                    <div class="test-card green">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Su visión para el contenido audiovisual es mágica. Transformó nuestras ideas desordenadas en campañas preciosas y efectivas."</p>
+                        <strong>Creadora de Contenido</strong>
+                    </div>
+                    <div class="test-card cream">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Anna tiene una capacidad innata para conectar con la audiencia. Cada campaña que ha liderado ha superado nuestras expectativas."</p>
+                        <strong>Responsable de Comunicación</strong>
+                    </div>
+                    <div class="test-card green">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Su formación corporativa transformó la manera en la que nuestro equipo gestiona las redes sociales. Cercana y muy profesional."</p>
+                        <strong>HR Manager</strong>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-arrow" id="test-next" aria-label="Siguiente">&#8250;</button>
         </div>
     </div>
 
@@ -356,8 +318,8 @@
             <h2>CONECTEMOS</h2>
             <p>Cuéntame qué tienes en mente, me encantará ayudarte a darle vida.</p>
             <div class="contact-box">
-                <p>Email: hola@annatoledo.com</p>
-                <p>LinkedIn: /in/annatoledo</p>
+                <p>Email: anna.tol.rod@gmail.com</p>
+                <p>LinkedIn: linkedin.com/in/atoledorodd</p>
                 <p>Ubicación: Eibar, Euskadi</p>
             </div>
         </div>
@@ -388,6 +350,78 @@
         }
         updateClock();
         setInterval(updateClock, 10000);
+
+        // Idioma (placeholder simple, se puede ampliar)
+        function changeLanguage(lang) {
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+        }
+
+        // === CARRUSEL GENÉRICO POR PÁGINAS (estilo Instagram) ===
+        function setupCarousel({ trackId, prevId, nextId, perPage }) {
+            const track = document.getElementById(trackId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            const cards = Array.from(track.children);
+            const total = cards.length;
+            let page = 0;
+
+            function getVisible() {
+                return typeof perPage === 'function' ? perPage() : perPage;
+            }
+
+            function totalPages() {
+                return Math.max(Math.ceil(total / getVisible()), 1);
+            }
+
+            function update() {
+                const visible = getVisible();
+                const card = track.children[0];
+                const trackStyles = getComputedStyle(track);
+                const gap = parseFloat(trackStyles.gap) || 0;
+                const step = (card.getBoundingClientRect().width + gap) * visible;
+                track.style.transform = `translateX(${-step * page}px)`;
+            }
+
+            function next() {
+                page = (page + 1) % totalPages();
+                update();
+            }
+
+            function prev() {
+                page = (page - 1 + totalPages()) % totalPages();
+                update();
+            }
+
+            nextBtn.addEventListener('click', next);
+            prevBtn.addEventListener('click', prev);
+            window.addEventListener('resize', () => { page = 0; update(); });
+            update();
+        }
+
+        function visibleWinCards() {
+            const w = window.innerWidth;
+            if (w <= 768) return 1;
+            if (w <= 900) return 2;
+            return 3;
+        }
+
+        function visibleTestCards() {
+            return window.innerWidth <= 768 ? 1 : 2;
+        }
+
+        setupCarousel({
+            trackId: 'wins-track',
+            prevId: 'wins-prev',
+            nextId: 'wins-next',
+            perPage: visibleWinCards
+        });
+
+        setupCarousel({
+            trackId: 'test-track',
+            prevId: 'test-prev',
+            nextId: 'test-next',
+            perPage: visibleTestCards
+        });
     </script>
 
 </body>
