@@ -226,10 +226,42 @@ img { max-width: 100%; display: block; }
 .test-text { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; }
 
 /* === 6. CONNECT === */
-.connect-section { background-color: var(--pink); display: flex; flex-wrap: wrap; gap: 40px; }
+.connect-section { background-color: var(--pink); display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
 .connect-left { flex: 1; min-width: 300px; }
 .connect-left h2 { margin-bottom: 20px; }
-.contact-box { background-color: var(--green); padding: 30px; margin-top: 30px; font-weight: 600; font-size: 1.1rem; }
+.cv-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+.cv-btn {
+    display: inline-block;
+    background-color: var(--brown);
+    color: var(--pink);
+    padding: 14px 28px;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 30px;
+    text-align: center;
+    transition: opacity 0.2s;
+}
+.cv-btn:hover { opacity: 0.8; }
+.cv-btn-en {
+    background-color: transparent;
+    color: var(--brown);
+    border: 2.5px solid var(--brown);
+}
+.contact-box {
+    background-color: var(--green);
+    padding: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+} background-color: var(--green); padding: 30px; margin-top: 30px; font-weight: 600; font-size: 1.1rem; }
 .connect-right {
     flex: 1;
     min-width: 300px;
