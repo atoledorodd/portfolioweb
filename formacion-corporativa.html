@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formación Corporativa | Anna Toledo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ffc4e1;
+            --brown: #3f221b;
+            --cream: #f9f7ed;
+            --green: #b6d545;
+            --font-main: 'Poppins', sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--cream); color: var(--brown); min-height: 100vh; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 24px 40px; font-weight: 900; font-size: 0.85rem;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            text-decoration: none; color: var(--brown); transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.6; }
+
+        .project-hero {
+            padding: 0 40px 60px;
+            display: flex; align-items: flex-end;
+            justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+        .project-hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem); font-weight: 900;
+            text-transform: uppercase; line-height: 0.95; max-width: 700px;
+        }
+        .project-hero h1 em {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-weight: 700; text-transform: none;
+        }
+        .project-meta { font-size: 0.9rem; font-weight: 600; text-align: right; line-height: 1.8; opacity: 0.7; }
+
+        .divider { height: 3px; background-color: var(--brown); margin: 0 40px 60px; }
+
+        .moodboard {
+            padding: 0 40px 80px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 80px;
+            gap: 16px;
+        }
+
+        .block { border-radius: 4px; overflow: hidden; position: relative; }
+
+        .img-block { background-color: var(--pink); display: flex; align-items: center; justify-content: center; }
+        .img-block .placeholder-label { font-size: 0.7rem; font-weight: 600; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 10px; }
+        .img-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .text-block { display: flex; flex-direction: column; justify-content: center; padding: 24px; }
+        .text-block.bg-cream { background-color: var(--cream); border: 2px solid var(--brown); }
+        .text-block.bg-brown { background-color: var(--brown); color: var(--cream); }
+        .text-block.bg-green { background-color: var(--green); }
+        .text-block.bg-pink  { background-color: var(--pink); }
+
+        .text-block h2 { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 10px; }
+        .text-block h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .text-block p { font-size: 0.88rem; font-weight: 400; line-height: 1.6; opacity: 0.85; }
+        .text-block .stat { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; line-height: 1; }
+        .text-block .stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-top: 6px; }
+
+        .tag { display: inline-block; background-color: var(--brown); color: var(--pink); font-size: 0.7rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; width: fit-content; }
+        .tag.light { background-color: var(--green); color: var(--brown); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .project-footer { border-top: 3px solid var(--brown); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-footer p { font-weight: 600; font-size: 0.9rem; opacity: 0.6; }
+        .next-project { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--brown); transition: opacity 0.2s; }
+        .next-project:hover { opacity: 0.6; }
+
+        @media (max-width: 768px) {
+            .project-hero, .moodboard, .project-footer { padding-left: 20px; padding-right: 20px; }
+            .divider { margin-left: 20px; margin-right: 20px; }
+            .moodboard { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+            .block { grid-column: auto !important; grid-row: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="Portfolio web.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }">← Volver al inicio</a>
+
+    <div class="project-hero reveal">
+        <h1>Formación <em>corporativa</em></h1>
+        <div class="project-meta">
+            <p>Formación de equipos</p>
+            <p>Comunicación interna</p>
+            <p>2021 — 2025</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="moodboard">
+
+        <!-- Imagen taller -->
+        <div class="block img-block reveal" style="grid-column: 1/6; grid-row: 1/6;">
+            <img src="formacion1.jpg" alt="Taller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>formacion1.jpg</div>
+        </div>
+
+        <!-- Intro texto -->
+        <div class="block text-block bg-brown reveal" style="grid-column: 6/10; grid-row: 1/4;">
+            <span class="tag" style="background:var(--pink); color:var(--brown);">Formación</span>
+            <h2>Equipos que <em>conectan</em></h2>
+            <p>Diseño y lidero formaciones para equipos de empresa centradas en comunicación, gestión de comunidades y presencia digital. Metodología práctica, nada de PowerPoints aburridos.</p>
+        </div>
+
+        <!-- Stat equipos -->
+        <div class="block text-block bg-green reveal" style="grid-column: 10/13; grid-row: 1/4;">
+            <div class="stat">200+</div>
+            <div class="stat-label">Personas<br>formadas</div>
+        </div>
+
+        <!-- Imagen dinámica -->
+        <div class="block img-block reveal" style="grid-column: 6/9; grid-row: 4/8;">
+            <img src="formacion2.jpg" alt="Dinámica" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>formacion2.jpg</div>
+        </div>
+
+        <!-- Metodología -->
+        <div class="block text-block bg-pink reveal" style="grid-column: 9/13; grid-row: 4/7;">
+            <span class="tag">Metodología</span>
+            <h2>Aprender <em>haciendo</em></h2>
+            <p>Cada sesión combina teoría aplicada, dinámicas en grupo y ejercicios reales sobre los canales de la propia empresa.</p>
+        </div>
+
+        <!-- Stat satisfacción -->
+        <div class="block text-block bg-brown reveal" style="grid-column: 9/13; grid-row: 7/10;">
+            <div class="stat" style="color:var(--pink);">98%</div>
+            <div class="stat-label" style="color:var(--pink);">Satisfacción<br>en encuestas</div>
+        </div>
+
+        <!-- Imagen resultado -->
+        <div class="block img-block reveal" style="grid-column: 1/5; grid-row: 6/10;">
+            <img src="formacion3.jpg" alt="Resultado" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>formacion3.jpg</div>
+        </div>
+
+        <!-- Áreas -->
+        <div class="block text-block bg-green reveal" style="grid-column: 5/9; grid-row: 8/11;">
+            <span class="tag light">Áreas</span>
+            <h2>Qué <em>cubrimos</em></h2>
+            <p>Gestión de redes sociales · Comunicación de crisis · Creación de contenido · Gestión de comunidades · Marca personal del equipo</p>
+        </div>
+
+        <!-- Imagen grupo -->
+        <div class="block img-block reveal" style="grid-column: 9/13; grid-row: 10/13;">
+            <img src="formacion4.jpg" alt="Grupo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>formacion4.jpg</div>
+        </div>
+
+        <!-- Stat sesiones -->
+        <div class="block text-block bg-pink reveal" style="grid-column: 1/4; grid-row: 10/13;">
+            <div class="stat">30+</div>
+            <div class="stat-label">Sesiones<br>impartidas</div>
+        </div>
+
+        <!-- Texto cierre -->
+        <div class="block text-block bg-brown reveal" style="grid-column: 4/9; grid-row: 11/13;">
+            <span class="tag" style="background:var(--green); color:var(--brown);">¿Tu equipo?</span>
+            <h2>Formamos <em>juntos</em></h2>
+            <p>Si quieres un equipo que entienda las redes y sepa comunicar, hablemos.</p>
+        </div>
+
+    </div>
+
+    <div class="project-footer">
+        <p>Anna Toledo · Formación Corporativa</p>
+        <a href="crecimiento-comunidad.html" class="next-project">Siguiente proyecto →</a>
+    </div>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60); });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => obs.observe(el));
+    </script>
+
+</body>
+</html>

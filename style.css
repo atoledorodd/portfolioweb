@@ -226,29 +226,44 @@ img { max-width: 100%; display: block; }
 .test-text { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; }
 
 /* === 6. CONNECT === */
-.connect-section { background-color: var(--pink); display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
-.connect-left { flex: 1; min-width: 300px; }
-.connect-left h2 { margin-bottom: 20px; }
-.cv-buttons {
+/* === 6. CONNECT === */
+.connect-section {
+    background-color: var(--pink);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    align-items: center;
+}
+.connect-left {
+    flex: 1;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
+    gap: 32px;
+}
+.connect-left h2 { margin-bottom: 0; }
+
+.cv-buttons {
+    display: flex;
+    flex-direction: row;
     gap: 14px;
-    margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 .cv-btn {
     display: inline-block;
     background-color: var(--brown);
     color: var(--pink);
-    padding: 14px 28px;
+    padding: 12px 24px;
     text-decoration: none;
     font-family: var(--font-main);
     font-weight: 900;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     border-radius: 30px;
     text-align: center;
     transition: opacity 0.2s;
+    white-space: nowrap;
 }
 .cv-btn:hover { opacity: 0.8; }
 .cv-btn-en {
@@ -256,41 +271,84 @@ img { max-width: 100%; display: block; }
     color: var(--brown);
     border: 2.5px solid var(--brown);
 }
-.contact-box {
-    background-color: var(--green);
-    padding: 30px;
+
+/* Libreta */
+.notebook {
+    background-color: var(--cream);
+    border-radius: 4px;
+    position: relative;
+    padding: 28px 28px 28px 48px;
+    box-shadow: 3px 3px 0px var(--brown);
+    border: 2px solid var(--brown);
+    line-height: 2;
     font-weight: 600;
-    font-size: 1.1rem;
-} background-color: var(--green); padding: 30px; margin-top: 30px; font-weight: 600; font-size: 1.1rem; }
+    font-size: 1rem;
+}
+.notebook::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent calc(2rem - 1px),
+        rgba(63, 34, 27, 0.15) calc(2rem - 1px),
+        rgba(63, 34, 27, 0.15) 2rem
+    );
+    background-size: 100% 2rem;
+    background-position: 0 28px;
+    pointer-events: none;
+}
+.notebook::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 36px;
+    bottom: 0;
+    width: 2px;
+    background-color: rgba(180, 60, 60, 0.35);
+}
+.notebook p { position: relative; z-index: 1; }
+.notebook a {
+    color: var(--brown);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1.5px solid var(--brown);
+}
+.notebook a:hover { opacity: 0.7; }
+
 .connect-right {
     flex: 1;
     min-width: 300px;
-    background-color: var(--cream);
-    padding: 40px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
+    background: transparent;
     justify-content: center;
 }
-.mailto-box { text-align: center; }
+.mailto-box { text-align: left; }
 .mailto-text {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 24px;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 16px;
     color: var(--brown);
+    line-height: 1.6;
 }
 .mailto-btn {
     display: inline-block;
     width: auto;
-    padding: 16px 40px;
+    padding: 14px 36px;
     text-decoration: none;
     text-align: center;
+    border-radius: 30px;
 }
 .mailto-fallback {
-    margin-top: 16px;
-    font-size: 0.85rem;
-    font-weight: 400;
+    margin-top: 10px;
+    font-size: 0.82rem;
     color: var(--brown);
-    opacity: 0.75;
+    opacity: 0.65;
 }
 .copy-email-btn {
     background: none;
@@ -298,12 +356,13 @@ img { max-width: 100%; display: block; }
     text-decoration: underline;
     font-weight: 700;
     font-family: var(--font-main);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--brown);
     cursor: pointer;
     padding: 0;
     margin-left: 4px;
 }
+
 .submit-btn {
     width: 100%;
     background-color: var(--brown);
