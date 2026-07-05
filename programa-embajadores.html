@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Embajadores | Anna Toledo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ffc4e1; --brown: #3f221b; --cream: #f9f7ed; --green: #b6d545; --font-main: 'Poppins', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--pink); color: var(--brown); min-height: 100vh; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 24px 40px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--brown); transition: opacity 0.2s; }
+        .back-link:hover { opacity: 0.6; }
+        .project-hero { padding: 0 40px 60px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; max-width: 700px; }
+        .project-hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .project-meta { font-size: 0.9rem; font-weight: 600; text-align: right; line-height: 1.8; opacity: 0.6; }
+        .divider { height: 3px; background-color: var(--brown); margin: 0 40px 60px; }
+        .moodboard { padding: 0 40px 80px; display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 80px; gap: 16px; }
+        .block { border-radius: 4px; overflow: hidden; position: relative; }
+        .img-block { background-color: var(--cream); display: flex; align-items: center; justify-content: center; }
+        .img-block .placeholder-label { font-size: 0.7rem; font-weight: 600; opacity: 0.35; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 10px; }
+        .img-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .text-block { display: flex; flex-direction: column; justify-content: center; padding: 24px; }
+        .text-block.bg-cream { background-color: var(--cream); }
+        .text-block.bg-brown { background-color: var(--brown); color: var(--cream); }
+        .text-block.bg-green { background-color: var(--green); }
+        .text-block.bg-pink  { background-color: var(--pink); border: 2px solid var(--brown); }
+        .text-block h2 { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 10px; }
+        .text-block h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .text-block p { font-size: 0.88rem; font-weight: 400; line-height: 1.6; opacity: 0.85; }
+        .text-block .stat { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; line-height: 1; }
+        .text-block .stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-top: 6px; }
+        .tag { display: inline-block; background-color: var(--brown); color: var(--pink); font-size: 0.7rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; width: fit-content; }
+        .tag.light { background-color: var(--green); color: var(--brown); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .project-footer { border-top: 3px solid var(--brown); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-footer p { font-weight: 600; font-size: 0.9rem; opacity: 0.6; }
+        .next-project { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--brown); transition: opacity 0.2s; }
+        .next-project:hover { opacity: 0.6; }
+        @media (max-width: 768px) {
+            .project-hero, .moodboard, .project-footer { padding-left: 20px; padding-right: 20px; }
+            .divider { margin-left: 20px; margin-right: 20px; }
+            .moodboard { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+            .block { grid-column: auto !important; grid-row: auto !important; }
+        }
+    .cta-btn { display: inline-block; margin-top: 14px; padding: 10px 22px; background: transparent; border: 2px solid var(--brown); color: var(--brown); font-family: var(--font-main); font-weight: 900; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 30px; transition: opacity 0.2s; } .cta-btn:hover { opacity: 0.65; }
+        </style>
+</head>
+<body>
+    <a href="Portfolio web.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }">← Volver al inicio</a>
+    <div class="project-hero reveal">
+        <h1>Programa de <em>embajadores</em></h1>
+        <div class="project-meta">
+            <p>Gestión de Creadores</p>
+            <p>Influencer Marketing</p>
+            <p>2021 — 2025</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="moodboard">
+        <div class="block text-block bg-brown reveal" style="grid-column:1/5; grid-row:1/4;">
+            <span class="tag light">Embajadores</span>
+            <h2>Personas <em>que conectan</em></h2>
+            <p>Diseño y gestiono programas de embajadores conectando creadores auténticos con marcas que comparten sus valores.</p>
+        </div>
+        <div class="block img-block reveal" style="grid-column:5/9; grid-row:1/5;">
+            <img src="embajadores1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>embajadores1.jpg</div>
+        </div>
+        <div class="block text-block bg-green reveal" style="grid-column:9/13; grid-row:1/3;">
+            <div class="stat">50+</div>
+            <div class="stat-label">Creadores<br>gestionados</div>
+        </div>
+        <div class="block text-block bg-pink reveal" style="grid-column:9/13; grid-row:3/5;">
+            <div class="stat">20+</div>
+            <div class="stat-label">Marcas<br>conectadas</div>
+        </div>
+        <div class="block text-block bg-cream reveal" style="grid-column:1/5; grid-row:4/7;">
+            <span class="tag">Selección</span>
+            <h2>El perfil <em>correcto</em></h2>
+            <p>No cualquier creador. Analizo afinidad, audiencia real y valores compartidos antes de cada colaboración.</p>
+        </div>
+        <div class="block img-block reveal" style="grid-column:5/9; grid-row:5/9;">
+            <img src="embajadores2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>embajadores2.jpg</div>
+        </div>
+        <div class="block img-block reveal" style="grid-column:9/13; grid-row:5/9;">
+            <img src="embajadores3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>embajadores3.jpg</div>
+        </div>
+        <div class="block text-block bg-brown reveal" style="grid-column:1/5; grid-row:7/10;">
+            <span class="tag light">Proceso</span>
+            <p style="color:var(--cream); font-weight:700; line-height:2.2; font-size:0.85rem;">Selección · Briefing · Seguimiento · Análisis · Informe final</p>
+        </div>
+        <div class="block text-block bg-green reveal" style="grid-column:5/9; grid-row:9/12;">
+            <h2>Contenido <em>orgánico</em></h2>
+            <p>El mejor marketing no parece marketing. Trabajo con creadores que hablan con su audiencia, no a su audiencia.</p>
+        </div>
+        <div class="block img-block reveal" style="grid-column:9/13; grid-row:9/12;">
+            <img src="embajadores4.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>embajadores4.jpg</div>
+        </div>
+        <div class="block img-block reveal" style="grid-column:1/5; grid-row:10/13;">
+            <img src="embajadores5.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>embajadores5.jpg</div>
+        </div>
+        <div class="block text-block bg-pink reveal" style="grid-column:9/13; grid-row:12/14;">
+            <span class="tag">¿Tu marca?</span>
+            <h2>Encontremos <em>tu voz</em></h2>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20embajadores" target="_blank" rel="noopener" class="cta-btn">Escríbeme →</a>
+        </div>
+    </div>
+    <div class="project-footer">
+        <p>Anna Toledo · Programa de Embajadores</p>
+        <a href="campanas-audiovisuales.html" class="next-project">Siguiente proyecto →</a>
+    </div>
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*60); });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>

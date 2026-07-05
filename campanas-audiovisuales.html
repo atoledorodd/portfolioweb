@@ -272,7 +272,8 @@
             }
             .block { grid-column: auto !important; grid-row: auto !important; }
         }
-    </style>
+    .cta-btn { display: inline-block; margin-top: 14px; padding: 10px 22px; background: transparent; border: 2px solid var(--brown); color: var(--brown); font-family: var(--font-main); font-weight: 900; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 30px; transition: opacity 0.2s; } .cta-btn:hover { opacity: 0.65; }
+        </style>
 </head>
 <body>
 
@@ -294,105 +295,73 @@
     <!-- MOOD BOARD COLLAGE -->
     <div class="moodboard">
 
-        <!-- Imagen grande izquierda -->
-        <div class="block img-block c1-5 r1-6 reveal">
-            <img src="proyecto1.jpg" alt="Campaña 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>Tu imagen aquí<br>proyecto1.jpg</div>
+        <div class="block img-block reveal" style="grid-column:1/5; grid-row:1/8;">
+            <img src="proyecto1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>proyecto1.jpg</div>
         </div>
 
-        <!-- Texto intro -->
-        <div class="block text-block bg-cream c5-9 r1-4 reveal">
+        <div class="block text-block bg-cream reveal" style="grid-column:5/10; grid-row:1/6;">
             <span class="tag">Dirección de contenido</span>
             <h2>Vídeo que detiene el scroll</h2>
             <p>Dirijo y produzco contenido audiovisual pensado para redes sociales: formatos cortos, ritmo rápido y narrativa que conecta desde el primer segundo.</p>
         </div>
 
-        <!-- Stat engagement -->
-        <div class="block text-block bg-brown c9-13 r1-4 reveal">
-            <div class="stat" style="color: var(--pink);">+3x</div>
-            <div class="stat-label" style="color: var(--pink);">Engagement medio<br>en campañas vídeo</div>
+        <div class="block text-block bg-brown reveal" style="grid-column:10/13; grid-row:1/6;">
+            <div class="stat" style="color:var(--pink);">+3x</div>
+            <div class="stat-label" style="color:var(--pink);">Engagement medio<br>en campañas vídeo</div>
         </div>
 
-        <!-- Imagen vertical -->
-        <div class="block img-block c5-7 r4-8 reveal">
-            <img src="proyecto2.jpg" alt="Campaña 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>proyecto2.jpg</div>
-        </div>
-
-        <!-- Texto formato reel -->
-        <div class="block text-block bg-green c7-10 r4-7 reveal">
+        <div class="block text-block bg-green reveal" style="grid-column:5/9; grid-row:6/11;">
             <span class="tag light">Reels & TikTok</span>
             <h2>Formato <em>corto</em></h2>
             <p>Guión, grabación y edición de contenido vertical optimizado para el algoritmo.</p>
         </div>
 
-        <!-- Imagen cuadrada -->
-        <div class="block img-block c10-13 r4-7 reveal">
-            <img src="proyecto3.jpg" alt="Campaña 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>proyecto3.jpg</div>
+        <div class="block img-block reveal" style="grid-column:9/13; grid-row:6/11;">
+            <img src="proyecto2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>proyecto2.jpg</div>
         </div>
 
-        <!-- Stat views -->
-        <div class="block text-block bg-pink c1-4 r6-9 reveal">
+        <div class="block text-block bg-pink reveal" style="grid-column:1/5; grid-row:8/13;">
             <div class="stat">660K</div>
             <div class="stat-label">Visualizaciones<br>en un solo vídeo</div>
         </div>
 
-        <!-- Imagen panorámica -->
-        <div class="block img-block c4-10 r7-10 reveal">
-            <img src="proyecto4.jpg" alt="Campaña 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>proyecto4.jpg</div>
+        <div class="block img-block reveal" style="grid-column:5/13; grid-row:11/16;">
+            <img src="proyecto3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>proyecto3.jpg</div>
         </div>
 
-        <!-- Texto producción -->
-        <div class="block text-block bg-brown c7-10 r7-10 reveal" style="display:none;"><!-- ocupa mismo espacio que img --></div>
-
-        <!-- Imagen pequeña -->
-        <div class="block img-block c10-13 r7-9 reveal">
-            <img src="proyecto5.jpg" alt="Campaña 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>proyecto5.jpg</div>
-        </div>
-
-        <!-- Texto marcas -->
-        <div class="block text-block bg-cream c10-13 r9-12 reveal">
+        <div class="block text-block bg-cream reveal" style="grid-column:1/5; grid-row:13/18;">
             <span class="tag">Marcas</span>
+            <h2>Moda, <em>lifestyle</em> & más</h2>
             <p>He colaborado con marcas de moda, lifestyle y formación, adaptando el tono y el formato a cada audiencia.</p>
         </div>
 
-        <!-- Imagen -->
-        <div class="block img-block c1-4 r9-12 reveal">
-            <img src="proyecto6.jpg" alt="Campaña 6" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>proyecto6.jpg</div>
+        <div class="block img-block reveal" style="grid-column:5/9; grid-row:16/21;">
+            <img src="proyecto4.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>proyecto4.jpg</div>
         </div>
 
-        <!-- Texto proceso -->
-        <div class="block text-block bg-green c4-10 r10-13 reveal">
+        <div class="block text-block bg-green reveal" style="grid-column:9/13; grid-row:16/21;">
             <h2>Del concepto <em>a la pantalla</em></h2>
-            <p>Me encargo de todo el proceso: briefing, guión, dirección en el set, edición y entrega de assets optimizados para cada plataforma. Sin intermediarios, con criterio.</p>
+            <p>Briefing, guión, dirección, edición y entrega optimizada para cada plataforma. Sin intermediarios, con criterio.</p>
         </div>
 
-        <!-- Stat campañas -->
-        <div class="block text-block bg-brown c10-13 r12-14 reveal">
-            <div class="stat" style="color: var(--pink);">15+</div>
-            <div class="stat-label" style="color: var(--pink);">Campañas<br>producidas</div>
+        <div class="block text-block bg-brown reveal" style="grid-column:1/5; grid-row:18/22;">
+            <div class="stat" style="color:var(--pink);">15+</div>
+            <div class="stat-label" style="color:var(--pink);">Campañas<br>producidas</div>
         </div>
 
-        <!-- Imagen final -->
-        <div class="block img-block c1-5 r12-15 reveal">
-            <img src="proyecto7.jpg" alt="Campaña 7" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="placeholder-label" style="display:none;">📷<br>proyecto7.jpg</div>
-        </div>
-
-        <!-- Texto cierre -->
-        <div class="block text-block bg-pink c5-10 r13-15 reveal">
+        <div class="block text-block bg-pink reveal" style="grid-column:5/13; grid-row:21/25;">
             <span class="tag">¿Hablamos?</span>
             <h2>Tu historia, <em>mi cámara</em></h2>
-            <p>Si buscas contenido que conecte de verdad, escríbeme.</p>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20tu%20proyecto" target="_blank" rel="noopener" class="cta-btn">Escríbeme →</a>
         </div>
 
     </div>
 
-    <!-- FOOTER DEL PROYECTO -->
+        <!-- FOOTER DEL PROYECTO -->
     <div class="project-footer">
         <p>Anna Toledo · Producción Audiovisual</p>
         <a href="formacion-corporativa.html" class="next-project">Siguiente proyecto →</a>
