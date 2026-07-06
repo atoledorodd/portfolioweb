@@ -46,6 +46,18 @@
             .block { grid-column: auto !important; grid-row: auto !important; }
         }
     .cta-btn { display: inline-block; margin-top: 14px; padding: 10px 22px; background: transparent; border: 2px solid var(--brown); color: var(--brown); font-family: var(--font-main); font-weight: 900; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 30px; transition: opacity 0.2s; } .cta-btn:hover { opacity: 0.65; }
+
+    /* docu4 hover zoom en créditos */
+    .docu4-wrap { cursor: zoom-in; overflow: hidden; }
+    .docu4-img {
+        width: 100%; height: 100%; object-fit: cover;
+        transform-origin: center bottom;
+        transition: transform 0.4s ease, object-position 0.4s ease;
+    }
+    .docu4-wrap:hover .docu4-img {
+        transform: scale(2.5);
+        transform-origin: center bottom;
+    }
         </style>
 </head>
 <body>
@@ -61,21 +73,21 @@
     <div class="divider"></div>
     <div class="moodboard">
         <div class="block img-block reveal" style="grid-column:1/7; grid-row:1/6;">
-            <img src="docu1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <img src="docu1.jpg" alt="" style="object-position: center 55%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="placeholder-label" style="display:none;">📷<br>docu1.jpg</div>
         </div>
         <div class="block text-block bg-pink reveal" style="grid-column:7/13; grid-row:1/4;">
             <span class="tag light">Storytelling</span>
             <h2>Historias que <em>importan</em></h2>
-            <p>Produzco series documentales cortas para marcas que quieren mostrar su lado humano. Formato episódico, narrativa real, impacto duradero en redes.</p>
+            <p>Produzco piezas audiovisuales cortas para marcas que quieren mostrar su lado humano.</p>
         </div>
         <div class="block text-block bg-dark reveal" style="grid-column:7/10; grid-row:4/7;">
-            <div class="stat" style="color:var(--pink);">5–8</div>
-            <div class="stat-label">Min. por<br>episodio</div>
+            <div class="stat" style="color:var(--pink);">Cortos</div>
+            <div class="stat-label">de 10 mins</div>
         </div>
         <div class="block text-block bg-green reveal" style="grid-column:10/13; grid-row:4/7;">
-            <div class="stat">3x</div>
-            <div class="stat-label">Más retención<br>vs post normal</div>
+            <div class="stat">Video<br>clip</div>
+            <div class="stat-label">de<br>Lia Kali</div>
         </div>
         <div class="block img-block reveal" style="grid-column:1/5; grid-row:6/10;">
             <img src="docu2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -83,8 +95,8 @@
         </div>
         <div class="block text-block bg-cream reveal" style="grid-column:5/9; grid-row:6/9;">
             <span class="tag">Proceso</span>
-            <h2>Pre → Rodaje → <em>Post</em></h2>
-            <p>Me encargo de todo: guión, localización, dirección en rodaje, edición y subtitulado. Entrego assets para todas las plataformas.</p>
+            <h2>Producción Integral</h2>
+            <p>Gestiono presupuestos, contratos y logística. Lidero equipos de más de 30 personas, asegurando que cada rodaje fluya sin imprevistos. La mano derecha que hace posible tu visión.</p>
         </div>
         <div class="block img-block reveal" style="grid-column:9/13; grid-row:7/11;">
             <img src="docu3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -92,20 +104,20 @@
         </div>
         <div class="block text-block bg-dark reveal" style="grid-column:5/9; grid-row:9/12;">
             <h2>Marca <em>con alma</em></h2>
-            <p>El documental de marca no es publicidad. Es la historia que hace que la gente se quede, comparta y vuelva.</p>
+            <p>Es la historia que hace que la gente se quede, comparta y vuelva.</p>
         </div>
-        <div class="block img-block reveal" style="grid-column:1/5; grid-row:10/13;">
-            <img src="docu4.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="block img-block reveal docu4-wrap" style="grid-column:1/5; grid-row:10/13;">
+            <img src="docu4.png" alt="" class="docu4-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="placeholder-label" style="display:none;">📷<br>docu4.jpg</div>
         </div>
         <div class="block text-block bg-pink reveal" style="grid-column:9/13; grid-row:11/13;">
             <span class="tag light">¿Tu historia?</span>
-            <h2>Cuéntamela <em>a mí</em></h2>
-            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20tu%20proyecto%20documental" target="_blank" rel="noopener" class="cta-btn">Escríbeme →</a>
+            <h2>Cuéntame</h2>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20tu%20proyecto" target="_blank" rel="noopener" class="cta-btn">Escríbeme →</a>
         </div>
     </div>
     <div class="project-footer">
-        <p>Anna Toledo · Serie Documental</p>
+        <p>Anna Toledo · Producción Audiovisual</p>
         <a href="programa-embajadores.html" class="next-project">Siguiente proyecto →</a>
     </div>
     <script>
