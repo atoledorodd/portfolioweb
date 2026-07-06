@@ -160,7 +160,8 @@ h1, h2, h3, h4 {
     transition: transform 0.5s ease;
 }
 .win-card { background-color: var(--cream); }
-.win-img { height: 200px; background-color: #ddd; }
+.win-img { height: 200px; background-color: #ddd; overflow: hidden; }
+.win-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .win-content { padding: 30px; }
 .win-content h3 { font-size: 1.3rem; margin-bottom: 10px; }
 .win-btn {
@@ -229,7 +230,11 @@ h1, h2, h3, h4 {
 }
 .test-card.cream { background-color: var(--cream); }
 .test-card.green { background-color: var(--green); }
-.test-img { width: 100%; height: 250px; background-color: #ccc; margin-bottom: 20px; }
+.test-img { width: 100%; height: 250px; background-color: #ccc; margin-bottom: 20px; overflow: hidden; }
+.test-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.test-img img[alt]::after { display: none; }
+/* Ocultar texto alt cuando imagen no carga */
+.test-img img:not([src]), .test-img img[src=""] { visibility: hidden; }
 .test-text { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; }
 
 /* === 6. CONNECT === */
