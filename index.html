@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Toledo | Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === LANG SWITCHER === */
+        .lang-container { position: absolute; top: 20px; right: 20px; z-index: 1000; }
+        .lang-button {
+            background: var(--pink);
+            border: 2px solid var(--brown);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            border: 2px solid var(--brown);
+            width: 130px;
+            margin-top: 5px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dropdown-content a { display: block; padding: 10px; text-decoration: none; color: var(--brown); font-weight: 600; }
+        .dropdown-content a:hover { background: var(--pink); }
+        .lang-container:hover .dropdown-content { display: block; }
+
+        /* === TICKER / BARRA DE NOTICIAS === */
+        .ticker-bar {
+            background-color: var(--pink);
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            height: 44px;
+            position: relative;
+            margin-bottom: 40px;
+            border-top: 3px solid var(--brown);
+            border-bottom: 3px solid var(--brown);
+        }
+        .ticker-label {
+            background-color: var(--brown);
+            color: var(--pink);
+            font-family: var(--font-main);
+            font-weight: 900;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+            z-index: 2;
+            position: relative;
+        }
+        .ticker-label::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: 44px solid var(--brown);
+            border-right: 12px solid transparent;
+        }
+        .ticker-track { flex: 1; overflow: hidden; display: flex; align-items: center; padding-left: 24px; }
+        .ticker-content { display: inline-flex; gap: 0; white-space: nowrap; animation: ticker-scroll 22s linear infinite; }
+        .ticker-content span {
+            color: var(--brown);
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-right: 80px;
+        }
+        .ticker-content span::before { content: '◆'; color: var(--brown); margin-right: 80px; font-size: 0.6rem; }
+        .ticker-content span:first-child::before { display: none; }
+        .ticker-time {
+            background-color: var(--brown);
+            color: var(--pink);
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            font-variant-numeric: tabular-nums;
+        }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) { .ticker-content { animation: none; } }
+
+
+        /* === HERO COLLAGE === */
+        .hero-collage {
+            display: flex;
+            align-items: flex-end;
+            gap: 0;
+            /* Anna sobresale por encima del ticker: la escena desborda hacia arriba */
+            margin-top: -60px;
+            padding-top: 0;
+        }
+        .hero-text {
+            flex: 0 0 380px;
+            padding-top: 80px;
+            padding-bottom: 40px;
+            z-index: 2;
+        }
+        .hero-text h1 { font-size: 5rem; line-height: 1; }
+        .hero-desc {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 16px 0 24px;
+            color: var(--brown);
+        }
+        .hero-cta {
+            display: inline-block;
+            color: var(--brown);
+            text-decoration: underline;
+            font-weight: 900;
+            font-family: var(--font-main);
+            font-size: 1rem;
+        }
+
+        /* Escena: overflow visible para que Anna pueda sobresalir */
+        .hero-scene {
+            flex: 1;
+            position: relative;
+            height: 480px;
+            overflow: visible;
+            cursor: none;
+        }
+        .scene-el { position: absolute; object-fit: contain; }
+
+        /* ANNA principal */
+        .anna {
+            height: 560px;
+            width: auto;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        /* Miniyo cámara (3.png): encima hombro izq, atrás — FIJO */
+        .gato-gris {
+            width: 200px;
+            height: auto;
+            bottom: 150px;
+            right: 425px;
+            z-index: 2;
+        }
+
+       
+         /* GATO negro (4.png): delante — FIJO */
+       #l-youtube /* moon */  { 
+            width: 135px; 
+            height: auto;
+            bottom: 205px;
+            right: 130px;
+            z-index: 2;
+        }
+
+        /* MÓVIL (13.png: 212x414 - teléfono vertical): sigue ratón */
+        .movil-hover {
+            width: 80px;
+            height: auto;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }
+        .hero-scene:hover .movil-hover { opacity: 1; }
+
+        /* LOGOS flotantes */
+        .logo { z-index: 6; position: absolute; }
+
+        /* Fila alta — arco encima de la cabeza */
+        #l-chatgpt  /* canva */ { width: 65px; top: -10px;  left: 10%;  animation: floatIcon 4.2s ease-in-out infinite 0s; }
+        #l-canva   /* tiktok */  { width: 65px; top:  15px;  left: 28%;  animation: floatIcon 5s   ease-in-out infinite 0.25s; }
+        #l-premiere /* linkedin */ { width: 65px; top:  0px;  left: 80%;  animation: floatIcon 4.7s ease-in-out infinite 0.5s; }
+        #l-linkedin /* microsoft */ { width: 60px; top:  15px;  left: 70%;  animation: floatIcon 5.3s ease-in-out infinite 0.75s; }
+        #l-instagram /* chatgpt */{ width: 60px; top: 80px;  left: 64%;  animation: floatIcon 4.9s ease-in-out infinite 1s; }
+
+        /* Fila media */
+        #l-tiktok  /* claude */  { width: 60px; top: 85px; left: 28%;  animation: floatIcon 4.5s ease-in-out infinite 0.65s; }
+        #l-claude  /* youtube */  { width: 65px; top: 105px; left: 4%;  animation: floatIcon 5.8s ease-in-out infinite 0.9s; }
+        #l-facebook /* premiere */ { width: 60px; top:  95px; left: 81%;  animation: floatIcon 4.3s ease-in-out infinite 1.1s; }
+
+        /* Fila baja (hombros) */
+        #l-microsoft /* instagram */ { width: 60px; top: 210px; left: 7%;   animation: floatIcon 5.5s ease-in-out infinite 0.55s; }
+        #l-github   /* empresas */ { width: 65px; top: 205px; left: 78%;  animation: floatIcon 4.8s ease-in-out infinite 0.8s; }
+        #l-empresas /* facebook */ { width: 55px; top: 305px; left: 15%;   animation: floatIcon 5.1s ease-in-out infinite 1.2s; }
+        #l-extra  /* github */   { width: 55px; top: 300px; left:75%;  animation: floatIcon 4.6s ease-in-out infinite 0.9s; }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0)    rotate(0deg); }
+            33%       { transform: translateY(-14px) rotate(6deg); }
+            66%       { transform: translateY(-7px)  rotate(-5deg); }
+        }
+
+                /* === SCROLL ANIMATIONS === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.delay-1 { transition-delay: 0.1s; }
+        .reveal.delay-2 { transition-delay: 0.2s; }
+        .reveal.delay-3 { transition-delay: 0.3s; }
+        .reveal.delay-4 { transition-delay: 0.4s; }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 16px 0 10px;
+            color: var --brown;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Selector de idioma -->
+    <div class="lang-container">
+        <div class="lang-button">🌐 <span id="current-lang">ES</span></div>
+        <div class="dropdown-content">
+            <a href="#" onclick="changeLanguage('es'); return false;">ES Español</a>
+            <a href="#" onclick="changeLanguage('en'); return false;">EN English</a>
+        </div>
+    </div>
+
+    <!-- 1. HERO -->
+    <div class="container" id="hero-container">
+        <div class="ticker-bar">
+            <div class="ticker-label">
+                <svg width="52" height="28" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ATR">
+                    <line x1="2" y1="26" x2="9" y2="4" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="9" y1="4" x2="16" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="4.5" y1="17" x2="13.5" y2="17" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="21" y1="4" x2="33" y2="4" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="27" y1="4" x2="27" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="38" y1="4" x2="38" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M38 4 Q50 4 50 11 Q50 18 38 18" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                    <line x1="43" y1="18" x2="50" y2="26" stroke="#ffc4e1" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="ticker-track">
+                <div class="ticker-content" id="ticker-content">
+                    <span>Bridging brands, people and experiences</span>
+                    <span>Estrategia Digital &amp; Social Media</span>
+                    <span>Producción Audiovisual</span>
+                    <span>Formación &amp; Comunidad</span>
+                    <span>Conectando marcas con personas desde Euskadi</span>
+                    <span>Bridging brands, people and experiences</span>
+                    <span>Estrategia Digital &amp; Social Media</span>
+                    <span>Producción Audiovisual</span>
+                    <span>Formación &amp; Comunidad</span>
+                    <span>Conectando marcas con personas desde Euskadi</span>
+                </div>
+            </div>
+            <div class="ticker-time" id="ticker-clock">--:--</div>
+        </div>
+
+        <!-- HERO COLLAGE -->
+        <div class="hero-collage">
+            <div class="hero-text reveal">
+                <h1>Anna Toledo</h1>
+                <p class="hero-desc">Transformo visiones en realidades audiovisuales. Mi trabajo no es solo producir, es tender puentes entre tu estrategia de negocio y la forma en la que conectas con tu audiencia. Trabajo con rigor técnico, pero con la mirada puesta en lo que realmente importa: <strong>las personas.</strong></p>
+                <a href="#work" class="hero-cta">Explora mi trabajo</a>
+            </div>
+            <div class="hero-scene" id="hero-scene">
+                <!-- Anna principal (fija, centro) -->
+                <img src="2.png" class="scene-el anna" alt="Anna Toledo">
+
+                <!-- Gato gris: encima hombro derecho delante (fijo) -->
+                <img src="3.png" class="scene-el gato-gris" alt="">
+
+
+                <!-- Móvil: sigue al ratón, oculto por defecto -->
+                <img src="13.png" class="scene-el movil-hover" id="movil-hover" alt="">
+
+                <!-- Logos flotantes -->
+                <img src="5.png"  class="scene-el logo" id="l-youtube"   alt="YouTube">
+                <img src="6.png"  class="scene-el logo" id="l-claude"    alt="Claude">
+                <img src="7.png"  class="scene-el logo" id="l-tiktok"    alt="TikTok">
+                <img src="8.png"  class="scene-el logo" id="l-canva"     alt="Canva">
+                <img src="9.png"  class="scene-el logo" id="l-chatgpt"   alt="ChatGPT">
+                <img src="10.png" class="scene-el logo" id="l-instagram" alt="Instagram">
+                <img src="12.png" class="scene-el logo" id="l-microsoft" alt="Microsoft">
+                <img src="14.png" class="scene-el logo" id="l-linkedin"  alt="LinkedIn">
+                <img src="15.png" class="scene-el logo" id="l-premiere"  alt="Premiere">
+                <img src="16.png" class="scene-el logo" id="l-facebook"  alt="Facebook">
+                <img src="17.png" class="scene-el logo" id="l-empresas"  alt="Empresas">
+                <img src="18.png" class="scene-el logo" id="l-github"    alt="GitHub">
+                <img src="19.png" class="scene-el logo" id="l-extra"     alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. JOURNEY -->
+    <div class="journey-section">
+        <div class="journey-left reveal-left">
+            <div class="video-container">
+                <video autoplay muted loop playsinline poster="tu-imagen-de-portada.jpg" style="width: 100%; border-radius: 10px;">
+                    <source src="video1.mov" type="video/mp4">
+                </video>
+            </div>
+            <div class="journey-quote">
+                "La gente olvidará lo que dijiste, la gente olvidará lo que hiciste, pero la gente nunca olvidará cómo la hiciste sentir." — <em>Maya Angelou</em>
+            </div>
+        </div>
+        <div class="journey-right reveal-right">
+            <h2>MI trayectoria</h2>
+            <p>Mi carrera empezó en la primera línea: la atención directa al cliente. Fue ahí donde aprendí a escuchar de verdad, una habilidad que más tarde se convirtió en el motor de mi creatividad durante la carrera de <strong>Comunicación Audiovisual</strong>. Entender qué necesita la gente fue la base sobre la que construí mi experiencia en producción y gestión de crisis. Hoy, aplico toda esa trayectoria en el mundo del <strong>marketing y las redes sociales</strong>: creando estrategias que, más que vender, conectan, resuelven y aportan valor real. Trabajo con equipos y proyectos donde la coherencia y la honestidad son las reglas del juego.</p>
+        </div>
+    </div>
+
+    <!-- 3. SERVICES -->
+    <div class="services-section">
+        <div class="services-left">
+            <h2>LO QUE PUEDO HACER POR TI</h2>
+        </div>
+        <div class="services-right">
+            <div class="service-card reveal delay-1">
+                <div class="service-icon"></div>
+                <div class="service-text">
+                    <h3>Estrategia Digital &amp; Social</h3>
+                    <p>Llevo el marketing de tu marca de principio a fin. Me encargo del calendario editorial, la gestión de redes sociales y la optimización SEO/SEM para que tu presencia online no solo exista, sino que funcione.</p>
+                </div>
+            </div>
+            <div class="service-card reveal delay-2">
+                <div class="service-icon"></div>
+                <div class="service-text">
+                    <h3>Producción Audiovisual</h3>
+                    <p>Grabo, edito y dirijo contenido audiovisual específico para redes sociales. Mi objetivo es que tus vídeos tengan la calidad técnica que tu marca necesita y el ritmo que los algoritmos piden para retener a la audiencia.</p>
+                </div>
+            </div>
+            <div class="service-card reveal delay-3">
+                <div class="service-icon"></div>
+                <div class="service-text">
+                    <h3>Formación &amp; Comunidad</h3>
+                    <p>Especialista en formación corporativa y gestión de clientes. Aprovecho mis años de experiencia en atención directa para enseñarte a ti o a tu equipo a gestionar comunidades, resolver crisis y conectar de verdad con quien está al otro lado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. WINS / CARRUSEL DE PROYECTOS -->
+    <div class="container wins-section" id="work">
+        <h2 class="reveal">LOGROS Y ÉXITOS</h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow" id="wins-prev" aria-label="Anterior">&#8249;</button>
+            <div class="carousel-viewport">
+                <div class="carousel-track" id="wins-track">
+                    <div class="win-card">
+                        <div class="win-img">
+                        </div>
+                        <div class="win-content">
+                            <h3>Community Manager & Content Creator</h3>
+                            <p>Creadora de contenido viral: responsable de hitos de +3M de visualizaciones y estrategias de crecimiento acelerado.</p>
+                            <a href="campanas-audiovisuales.html" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Contenido UGC</h3>
+                            <p>Creadora de contenido UGC enfocado en la conversión real: convierto productos en historias que el usuario final quiere ver y comprar.</p>
+                            <a href="lanzamiento-marca.html" class="win-btn">Ver Proyecto</a> 
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Desarrollo Web & Arquitectura Digital</h3>
+                            <p>Tu presencia online, optimizada y a medida</p>
+                            <a href="crecimiento-comunidad.html" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Mentoring Estratégico y Liderazgo Operativo</h3>
+                            <p>Liderazgo en entornos críticos: gestión, formación y resolución bajo presión.</p>
+                            <a href="formacion-corporativa.html" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Producción Audiovisual</h3>
+                            <p>Gestión de equipos +30 personas y ejecución de proyectos de alto impacto cultural.</p>
+                            <a href="serie-documental.html" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img"></div>
+                        <div class="win-content">
+                            <h3>Community Building</h3>
+                            <p>Especialista en la creación y dinamización de comunidades, con experiencia gestionando eventos.</p>
+                            <a href="programa-embajadores.html" class="win-btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-arrow" id="wins-next" aria-label="Siguiente">&#8250;</button>
+        </div>
+    </div>
+
+    <!-- 5. TESTIMONIALS / CARRUSEL -->
+    <div class="testimonials-header">
+        <h2>TESTIMONIOS</h2>
+    </div>
+    <div class="test-carousel-section">
+        <div class="test-carousel-wrapper">
+            <button class="carousel-arrow" id="test-prev" aria-label="Anterior">&#8249;</button>
+            <div class="test-carousel-viewport">
+                <div class="test-carousel-track" id="test-track">
+                    <div class="test-card cream">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Trabajar con Anna es colaborar con alguien que entiende la estrategia a la perfección y aporta una tranquilidad brutal al equipo."</p>
+                        <strong>Op Julia</strong>
+                    </div>
+                    <div class="test-card green">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Su visión para el contenido audiovisual es mágica. Transformó nuestras ideas desordenadas en campañas preciosas y efectivas."</p>
+                        <strong>Op Sofi</strong>
+                    </div>
+                    <div class="test-card cream">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Anna tiene una capacidad innata para conectar con la audiencia. Cada campaña que ha liderado ha superado nuestras expectativas."</p>
+                        <strong>OP jefa/e TMB</strong>
+                    </div>
+                    <div class="test-card green">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Su formación corporativa transformó la manera en la que nuestro equipo gestiona las redes sociales. Cercana y muy profesional."</p>
+                        <strong>Op Angel, dia drassanes</strong>
+                    </div>
+                     <div class="test-card cream">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Su formación corporativa transformó la manera en la que nuestro equipo gestiona las redes sociales. Cercana y muy profesional."</p>
+                        <strong>javi o dama por forms</strong>
+                    </div>
+                    <div class="test-card green">
+                        <div class="test-img"></div>
+                        <p class="test-text">"Su formación corporativa transformó la manera en la que nuestro equipo gestiona las redes sociales. Cercana y muy profesional."</p>
+                        <strong>Op Laura</strong>
+                    </div>
+
+                </div>
+            </div>
+            <button class="carousel-arrow" id="test-next" aria-label="Siguiente">&#8250;</button>
+        </div>
+    </div>
+
+    <!-- 6. CONNECT -->
+    <div class="container connect-section">
+        <div class="connect-left">
+            <h2>CONECTEMOS</h2>
+            <div class="cv-buttons">
+                <a href="cv-es.pdf" download class="cv-btn">⬇ Descargar CV</a>
+                <a href="cv-en.pdf" download class="cv-btn cv-btn-en">⬇ Download CV</a>
+            </div>
+        </div>
+        <div class="connect-right">
+            <div class="notebook">
+                <p>Instagram: <a href="https://instagram.com/atoledorodd" target="_blank">@atoledorodd</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/atoledorodd" target="_blank">linkedin.com/in/atoledorodd</a></p>
+                <p>Ubicación: Eibar, Euskadi</p>
+            </div>
+            <div class="mailto-box">
+                <p class="mailto-text">¿Te animas? Escríbeme directamente y te respondo lo antes posible.</p>
+                <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20tu%20proyecto" target="_blank" rel="noopener" class="submit-btn mailto-btn">
+                    Contáctame
+                </a>
+                <p class="mailto-fallback">
+                    ¿No se abre Gmail?
+                    <button type="button" class="copy-email-btn" onclick="copyEmail(this)">Copiar email</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === SCROLL REVEAL ===
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => observer.observe(el));
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('ticker-clock').textContent = h + ':' + m;
+        }
+        updateClock();
+        setInterval(updateClock, 10000);
+
+        // Idioma (placeholder simple, se puede ampliar)
+        function changeLanguage(lang) {
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+        }
+
+        // Copiar email como alternativa si mailto: no abre ningún cliente
+        function copyEmail(btn) {
+            const email = 'anna.tol.rod@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const original = btn.textContent;
+                btn.textContent = '¡Copiado!';
+                setTimeout(() => { btn.textContent = original; }, 2000);
+            }).catch(() => {
+                btn.textContent = email;
+            });
+        }
+
+        // === CARRUSEL GENÉRICO POR PÁGINAS (estilo Instagram) ===
+        function setupCarousel({ trackId, prevId, nextId, perPage }) {
+            const track = document.getElementById(trackId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            const cards = Array.from(track.children);
+            const total = cards.length;
+            let page = 0;
+
+            function getVisible() {
+                return typeof perPage === 'function' ? perPage() : perPage;
+            }
+
+            function totalPages() {
+                return Math.max(Math.ceil(total / getVisible()), 1);
+            }
+
+            function update() {
+                const visible = getVisible();
+                const card = track.children[0];
+                const trackStyles = getComputedStyle(track);
+                const gap = parseFloat(trackStyles.gap) || 0;
+                const step = (card.getBoundingClientRect().width + gap) * visible;
+                track.style.transform = `translateX(${-step * page}px)`;
+            }
+
+            function next() {
+                page = (page + 1) % totalPages();
+                update();
+            }
+
+            function prev() {
+                page = (page - 1 + totalPages()) % totalPages();
+                update();
+            }
+
+            nextBtn.addEventListener('click', next);
+            prevBtn.addEventListener('click', prev);
+            window.addEventListener('resize', () => { page = 0; update(); });
+            update();
+        }
+
+        function visibleWinCards() {
+            const w = window.innerWidth;
+            if (w <= 768) return 1;
+            if (w <= 900) return 2;
+            return 3;
+        }
+
+        function visibleTestCards() {
+            return window.innerWidth <= 768 ? 1 : 2;
+        }
+
+        setupCarousel({
+            trackId: 'wins-track',
+            prevId: 'wins-prev',
+            nextId: 'wins-next',
+            perPage: visibleWinCards
+        });
+
+        setupCarousel({
+            trackId: 'test-track',
+            prevId: 'test-prev',
+            nextId: 'test-next',
+            perPage: visibleTestCards
+        });
+
+        // === MÓVIL SIGUE AL RATÓN en la hero-scene ===
+        const heroScene = document.getElementById('hero-scene');
+        const movilHover = document.getElementById('movil-hover');
+        if (heroScene && movilHover) {
+            heroScene.addEventListener('mousemove', function(e) {
+                const rect = heroScene.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                movilHover.style.left = x + 'px';
+                movilHover.style.top  = y + 'px';
+            });
+        }
+    </script>
+
+</body>
+</html>
