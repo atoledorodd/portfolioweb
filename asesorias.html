@@ -105,6 +105,23 @@
             text-transform: none;
         }
         .servicio-card p { font-size: 0.85rem; line-height: 1.6; opacity: 0.8; flex: 1; }
+        .servicio-card .fecha {
+            font-size: 0.78rem;
+            font-weight: 700;
+            opacity: 0.75;
+            margin-top: 4px;
+        }
+        .servicio-card .fecha.soon {
+            color: var(--brown);
+            background: rgba(63,34,27,0.1);
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.72rem;
+        }
+        .dark .fecha.soon { color: var(--pink); background: rgba(255,196,225,0.15); }
+        .green .fecha.soon { color: var(--brown); background: rgba(63,34,27,0.1); }
+
         .servicio-card .duracion {
             font-size: 0.72rem;
             font-weight: 900;
@@ -113,6 +130,33 @@
             opacity: 0.5;
             margin-top: 6px;
         }
+        .fecha {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--brown);
+            opacity: 0.6;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dark .fecha { color: var(--cream); }
+        .fecha.sold-out { color: #c0392b; opacity: 1; }
+        .plazas {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: var(--brown);
+            color: var(--pink);
+        }
+        .dark .plazas { background: var(--pink); color: var(--brown); }
+        .green .plazas { background: var(--brown); color: var(--green); }
+        .plazas.pocas { background: #e67e22; color: white; }
+
         .reservar-btn {
             display: inline-block;
             margin-top: 10px;
@@ -255,7 +299,9 @@
                 <div class="servicio-emoji">🤖</div>
                 <h3 data-i18n="s1.title">Inteligencia Artificial <em>aplicada</em></h3>
                 <p data-i18n="s1.desc">ChatGPT, Claude, Midjourney y más. Aprende a usar la IA como herramienta real en tu día a día: desde generar contenido hasta automatizar tareas. Sin tecnicismos, con ejemplos prácticos.</p>
+                <div class="fecha soon" data-i18n="s1.date">📅 5 Feb · 18:00h</div>
                 <div class="duracion" data-i18n="s1.dur">⏱ 2h · Online</div>
+                <div class="fecha">📅 28 Aug · 18:00h <span class="plazas pocas">3 plazas libres</span></div>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Quiero%20reservar%3A%20IA%20aplicada" target="_blank" rel="noopener" class="reservar-btn" data-i18n="reservar">Reservar plaza →</a>
             </div>
 
@@ -264,7 +310,9 @@
                 <div class="servicio-emoji">📱</div>
                 <h3 data-i18n="s2.title">Cómo funcionan <em>las RRSS</em></h3>
                 <p data-i18n="s2.desc">Algoritmos, formatos, frecuencia, métricas. Te explico cómo funciona cada plataforma, qué contenido funciona y por qué, y cómo construir una presencia que crezca de forma orgánica.</p>
+                <div class="fecha soon" data-i18n="s2.date">📅 12 Feb · 19:00h</div>
                 <div class="duracion" data-i18n="s2.dur">⏱ 2h · Online</div>
+                <div class="fecha">📅 4 Sep · 18:00h <span class="plazas ">5 plazas libres</span></div>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Quiero%20reservar%3A%20RRSS" target="_blank" rel="noopener" class="reservar-btn" data-i18n="reservar">Reservar plaza →</a>
             </div>
 
@@ -273,7 +321,9 @@
                 <div class="servicio-emoji">🎬</div>
                 <h3 data-i18n="s3.title">Edición para <em>redes</em></h3>
                 <p data-i18n="s3.desc">CapCut, Premiere, herramientas móviles. Desde cero hasta crear reels con ritmo, subtítulos, transiciones y ese gancho que hace que la gente no pare de ver.</p>
+                <div class="fecha soon" data-i18n="s3.date">📅 20 Feb · 17:00h</div>
                 <div class="duracion" data-i18n="s3.dur">⏱ 2–3h · Online</div>
+                <div class="fecha">📅 11 Sep · 17:00h <span class="plazas ">4 plazas libres</span></div>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Quiero%20reservar%3A%20Edici%C3%B3n" target="_blank" rel="noopener" class="reservar-btn" data-i18n="reservar">Reservar plaza →</a>
             </div>
 
@@ -282,7 +332,9 @@
                 <div class="servicio-emoji">🎯</div>
                 <h3 data-i18n="s4.title">Estrategia de <em>contenido</em></h3>
                 <p data-i18n="s4.desc">Crea tu calendario editorial, define tu voz de marca, planifica campañas. Aprende a no improvisar y a tener siempre claro qué publicar, cuándo y por qué.</p>
+                <div class="fecha soon" data-i18n="s4.date">📅 26 Feb · 18:00h</div>
                 <div class="duracion" data-i18n="s4.dur">⏱ 2h · Online</div>
+                <div class="fecha">📅 18 Sep · 18:00h <span class="plazas ">6 plazas libres</span></div>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Quiero%20reservar%3A%20Estrategia" target="_blank" rel="noopener" class="reservar-btn" data-i18n="reservar">Reservar plaza →</a>
             </div>
 
@@ -291,7 +343,9 @@
                 <div class="servicio-emoji">✨</div>
                 <h3 data-i18n="s5.title">Construye tu <em>marca personal</em></h3>
                 <p data-i18n="s5.desc">LinkedIn, Instagram, presencia online. Te ayudo a definir quién eres digitalmente, qué quieres transmitir y cómo hacerlo de forma coherente y auténtica.</p>
+                <div class="fecha soon" data-i18n="s5.date">📅 5 Mar · 19:00h</div>
                 <div class="duracion" data-i18n="s5.dur">⏱ 2h · Online</div>
+                <div class="fecha">📅 25 Sep · 18:00h <span class="plazas ">5 plazas libres</span></div>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Quiero%20reservar%3A%20Marca%20personal" target="_blank" rel="noopener" class="reservar-btn" data-i18n="reservar">Reservar plaza →</a>
             </div>
 
@@ -300,7 +354,9 @@
                 <div class="servicio-emoji">💬</div>
                 <h3 data-i18n="s6.title">¿Tienes algo <em>específico</em> en mente?</h3>
                 <p data-i18n="s6.desc">Si lo que necesitas no está aquí, hablamos. Adapto las sesiones a tu nivel, tu industria y tus objetivos concretos. Cuéntame y lo hacemos.</p>
+                <div class="fecha soon" data-i18n="s6.date">📅 A concretar</div>
                 <div class="duracion" data-i18n="s6.dur">⏱ A definir juntos</div>
+                <div class="fecha">📅 A convenir contigo</div>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Consulta%20asesor%C3%ADa%20personalizada" target="_blank" rel="noopener" class="reservar-btn" data-i18n="s6.btn">Cuéntame →</a>
             </div>
 
@@ -334,6 +390,12 @@
                 "stat2":   "personas formadas",
                 "stat3":   "valoración media",
                 "servicios.title": "¿En qué te puedo <em>ayudar?</em>",
+                                "s1.date": "📅 5 Feb · 18:00h",
+                "s2.date": "📅 12 Feb · 19:00h",
+                "s3.date": "📅 20 Feb · 17:00h",
+                "s4.date": "📅 26 Feb · 18:00h",
+                "s5.date": "📅 5 Mar · 19:00h",
+                "s6.date": "📅 A concretar",
                 "s1.tag":  "IA & Productividad", "s1.title": "Inteligencia Artificial <em>aplicada</em>",
                 "s1.desc": "ChatGPT, Claude, Midjourney y más. Aprende a usar la IA como herramienta real en tu día a día: desde generar contenido hasta automatizar tareas. Sin tecnicismos, con ejemplos prácticos.",
                 "s1.dur":  "⏱ 2h · Online",
@@ -370,6 +432,12 @@
                 "stat2":   "people trained",
                 "stat3":   "average rating",
                 "servicios.title": "How can I <em>help you?</em>",
+                                "s1.date": "📅 5 Feb · 6:00pm",
+                "s2.date": "📅 12 Feb · 7:00pm",
+                "s3.date": "📅 20 Feb · 5:00pm",
+                "s4.date": "📅 26 Feb · 6:00pm",
+                "s5.date": "📅 5 Mar · 7:00pm",
+                "s6.date": "📅 To be arranged",
                 "s1.tag":  "AI & Productivity", "s1.title": "Artificial Intelligence <em>in practice</em>",
                 "s1.desc": "ChatGPT, Claude, Midjourney and more. Learn to use AI as a real tool in your daily life: from generating content to automating tasks. No jargon, just practical examples.",
                 "s1.dur":  "⏱ 2h · Online",

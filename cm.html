@@ -27,11 +27,34 @@
         .project-meta { font-size: 0.9rem; font-weight: 600; text-align: right; line-height: 1.8; opacity: 0.7; }
         .divider { height: 3px; background-color: var(--brown); margin: 0 40px 60px; }
 
-        /* Phones row */
-        .phones-section { padding: 0 40px 50px; }
-        .phone-row { display: flex; gap: 20px; justify-content: center; align-items: flex-end; }
-        .phone-unit { flex: 1; max-width: 180px; }
-        .phone-unit .phone-frame { height: 380px; }
+        /* Phone carousel */
+        .phones-section { padding: 0 40px 60px; position: relative; }
+        .phone-carousel-wrapper { display: flex; align-items: center; gap: 16px; }
+        .phone-carousel-viewport { overflow: hidden; flex: 1; }
+        .phone-row {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        .phone-unit { flex: 0 0 180px; }
+        .phone-unit .phone-frame { height: 320px; } /* 180x320 ≈ 9:16 */
+        .phone-arrow {
+            background: var(--brown);
+            color: var(--pink);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+        .phone-arrow:hover { opacity: 0.75; }
 
         /* Phone frame */
         .phone-frame { position: relative; width: 100%; background: #1a1a1a; border-radius: 32px; border: 5px solid #e0ddd8; box-shadow: 0 0 0 1px #aaa, 0 10px 32px rgba(0,0,0,0.35); overflow: hidden; display: flex; flex-direction: column; }
@@ -78,7 +101,8 @@
 
         @media (max-width: 768px) {
             .phone-row { flex-wrap: wrap; }
-            .phone-unit { max-width: 45%; }
+            .phone-unit { flex: 0 0 130px !important; }
+            .phone-unit .phone-frame { height: 230px; }
             .text-grid, .stats-row { grid-template-columns: 1fr 1fr; }
             .phones-section, .text-grid, .stats-row, .project-footer { padding-left: 20px; padding-right: 20px; }
         }
@@ -94,7 +118,7 @@
         </div>
     </div>
 
-    <a href="Portfolio web.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }"><span data-i18n="back">← Volver al inicio</span></a>
+    <a href="index.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }"><span data-i18n="back">← Volver al inicio</span></a>
 
     <div class="project-hero reveal">
         <h1 data-i18n="title">Community Manager <em>& Content Creator</em></h1>
@@ -109,13 +133,18 @@
 
     <!-- 4 MÓVILES EN FILA -->
     <div class="phones-section reveal">
-        <div class="phone-row">
+        <div class="phone-carousel-wrapper">
+            <button class="phone-arrow" id="phone-prev">&#8249;</button>
+            <div class="phone-carousel-viewport">
+                <div class="phone-row" id="phone-track">
             <div class="phone-unit">
                 <div class="phone-frame">
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <img src="fotos/proyecto1.jpg" alt="" style="object-position: center center;" onerror="this.style.display='none'">
-                        <div class="phone-placeholder">📱 proyecto1.jpg</div>
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/violeta.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo1.mp4</div>
                     </div>
                     <div class="phone-bar"></div>
                 </div>
@@ -124,8 +153,10 @@
                 <div class="phone-frame">
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <img src="fotos/proyecto2.png" alt="" style="object-position: center top;" onerror="this.style.display='none'">
-                        <div class="phone-placeholder">📱 proyecto2.png</div>
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/bahamas.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo2.mp4</div>
                     </div>
                     <div class="phone-bar"></div>
                 </div>
@@ -134,8 +165,10 @@
                 <div class="phone-frame">
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <img src="fotos/proyecto3.png" alt="" style="object-position: center top;" onerror="this.style.display='none'">
-                        <div class="phone-placeholder">📱 proyecto3.png</div>
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/800km.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo3.mp4</div>
                     </div>
                     <div class="phone-bar"></div>
                 </div>
@@ -144,12 +177,173 @@
                 <div class="phone-frame">
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <img src="fotos/proyecto4.png" alt="" onerror="this.style.display='none'">
-                        <div class="phone-placeholder">📱 proyecto4.png</div>
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/miley.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo4.mp4</div>
                     </div>
                     <div class="phone-bar"></div>
                 </div>
             </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/modelo.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo5.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/novia.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo6.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/personal1.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo7.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/personal2.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo8.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/personal3.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo9.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+              <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/genio1.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+              <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/genio2.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/madrid.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/meme.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/enter2.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/enter3.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/enter5.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video autoplay muted loop playsinline>
+                            <source src="fotos/enter6.mp4" type="video/mp4">
+                        </video>
+                        <div class="phone-placeholder">📱 ejemplo10.mp4</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+                </div>
+            </div>
+            <button class="phone-arrow" id="phone-next">&#8250;</button>
         </div>
     </div>
 
@@ -262,6 +456,39 @@
                 if (t[key] !== undefined) el.innerHTML = t[key];
             });
         }
+
+        // === CARRUSEL DE MÓVILES ===
+        (function() {
+            const track    = document.getElementById('phone-track');
+            const prevBtn  = document.getElementById('phone-prev');
+            const nextBtn  = document.getElementById('phone-next');
+            const units    = track.querySelectorAll('.phone-unit');
+            const gap      = 20;
+            let idx = 0;
+
+            function visibleCount() {
+                const vw = window.innerWidth;
+                if (vw < 480) return 2;
+                if (vw < 768) return 3;
+                return 5;
+            }
+
+            function maxIdx() {
+                return Math.max(units.length - visibleCount(), 0);
+            }
+
+            function goTo(newIdx, animate = true) {
+                idx = newIdx;
+                if (!animate) track.style.transition = 'none';
+                const unitW = units[0].getBoundingClientRect().width;
+                track.style.transform = `translateX(${-(unitW + gap) * idx}px)`;
+                if (!animate) requestAnimationFrame(() => { track.style.transition = ''; });
+            }
+
+            nextBtn.addEventListener('click', () => { goTo(idx >= maxIdx() ? 0 : idx + 1); });
+            prevBtn.addEventListener('click', () => { goTo(idx <= 0 ? maxIdx() : idx - 1); });
+            window.addEventListener('resize', () => { goTo(0, false); });
+        })();
 
         const reveals = document.querySelectorAll('.reveal');
         const obs = new IntersectionObserver(entries => {
