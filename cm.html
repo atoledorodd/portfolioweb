@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Manager & Content Creator | Anna Toledo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ffc4e1; --brown: #3f221b; --cream: #f9f7ed; --green: #b6d545; --font-main: 'Poppins', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--pink); color: var(--brown); min-height: 100vh; }
+
+        /* Lang switcher */
+        .lang-container { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .lang-button { background: var(--brown); border: 2px solid var(--brown); padding: 8px 16px; border-radius: 25px; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-main); color: var(--cream); }
+        .dropdown-content { display: none; position: absolute; right: 0; background: var(--cream); border: 2px solid var(--brown); width: 130px; margin-top: 5px; border-radius: 10px; overflow: hidden; }
+        .dropdown-content a { display: block; padding: 10px; text-decoration: none; color: var(--brown); font-weight: 600; font-family: var(--font-main); }
+        .dropdown-content a:hover { background: var(--brown); color: var(--cream); }
+        .lang-container:hover .dropdown-content { display: block; }
+
+        .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 24px 40px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--brown); transition: opacity 0.2s; }
+        .back-link:hover { opacity: 0.6; }
+
+        .project-hero { padding: 0 40px 60px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; max-width: 700px; }
+        .project-hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .project-meta { font-size: 0.9rem; font-weight: 600; text-align: right; line-height: 1.8; opacity: 0.7; }
+        .divider { height: 3px; background-color: var(--brown); margin: 0 40px 60px; }
+
+        /* Phones row */
+        .phones-section { padding: 0 40px 50px; }
+        .phone-row { display: flex; gap: 20px; justify-content: center; align-items: flex-end; }
+        .phone-unit { flex: 1; max-width: 180px; }
+        .phone-unit .phone-frame { height: 380px; }
+
+        /* Phone frame */
+        .phone-frame { position: relative; width: 100%; background: #1a1a1a; border-radius: 32px; border: 5px solid #e0ddd8; box-shadow: 0 0 0 1px #aaa, 0 10px 32px rgba(0,0,0,0.35); overflow: hidden; display: flex; flex-direction: column; }
+        .phone-notch { width: 48px; height: 8px; background: #e0ddd8; border-radius: 0 0 8px 8px; margin: 6px auto 0; flex-shrink: 0; }
+        .phone-screen { flex: 1; overflow: hidden; margin: 4px 3px 4px; border-radius: 4px; background: #111; position: relative; }
+        .phone-screen img, .phone-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .phone-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-align: center; padding: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .phone-bar { width: 36px; height: 4px; background: #e0ddd8; border-radius: 4px; margin: 4px auto 6px; flex-shrink: 0; }
+
+        /* Text grid */
+        .text-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 0 40px 40px; }
+        .text-card { padding: 30px 24px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+        .text-card.bg-pink  { background: var(--pink); color: var(--brown); }
+        .text-card.bg-brown { background: var(--brown); color: var(--cream); }
+        .text-card.bg-green { background: var(--green); color: var(--brown); }
+        .text-card.bg-cream { background: var(--cream); color: var(--brown); }
+        .text-card h2 { font-size: clamp(1rem, 2vw, 1.6rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+        .text-card h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .text-card p { font-size: 0.85rem; line-height: 1.6; opacity: 0.85; }
+        .stat { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; line-height: 1.1; }
+        .stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-top: 4px; line-height: 1.5; }
+
+        /* Stats row */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 0 40px 0; }
+        .stat-card { padding: 30px 24px; text-align: center; }
+        .stat-card.bg-brown { background: var(--brown); color: var(--cream); }
+        .stat-card.bg-green { background: var(--green); color: var(--brown); }
+        .stat-card.bg-pink  { background: var(--pink); color: var(--brown); }
+
+        .tag { display: inline-block; background-color: var(--brown); color: var(--pink); font-size: 0.65rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 8px; width: fit-content; }
+        .tag.light { background-color: var(--pink); color: var(--brown); }
+        .tag.dark  { background-color: var(--brown); color: var(--pink); }
+
+        .cta-btn { display: inline-block; margin-top: 12px; padding: 10px 22px; background: transparent; border: 2px solid var(--brown); color: var(--brown); font-family: var(--font-main); font-weight: 900; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 30px; transition: opacity 0.2s; }
+        .cta-btn:hover { opacity: 0.65; }
+
+        .project-footer { border-top: 3px solid var(--brown); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-top: 40px; }
+        .project-footer p { font-weight: 600; font-size: 0.9rem; opacity: 0.6; }
+        .next-project { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--brown); transition: opacity 0.2s; }
+        .next-project:hover { opacity: 0.6; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .phone-row { flex-wrap: wrap; }
+            .phone-unit { max-width: 45%; }
+            .text-grid, .stats-row { grid-template-columns: 1fr 1fr; }
+            .phones-section, .text-grid, .stats-row, .project-footer { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-container">
+        <div class="lang-button">🌐 <span id="current-lang">ES</span></div>
+        <div class="dropdown-content">
+            <a href="#" onclick="changeLanguage('es'); return false;">ES Español</a>
+            <a href="#" onclick="changeLanguage('en'); return false;">EN English</a>
+        </div>
+    </div>
+
+    <a href="Portfolio web.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }"><span data-i18n="back">← Volver al inicio</span></a>
+
+    <div class="project-hero reveal">
+        <h1 data-i18n="title">Community Manager <em>& Content Creator</em></h1>
+        <div class="project-meta">
+            <p data-i18n="meta1">Producción & Dirección</p>
+            <p data-i18n="meta2">Social Media Content</p>
+            <p>2024 — Actualidad</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4 MÓVILES EN FILA -->
+    <div class="phones-section reveal">
+        <div class="phone-row">
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/proyecto1.jpg" alt="" style="object-position: center center;" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 proyecto1.jpg</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/proyecto2.png" alt="" style="object-position: center top;" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 proyecto2.png</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/proyecto3.png" alt="" style="object-position: center top;" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 proyecto3.png</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/proyecto4.png" alt="" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 proyecto4.png</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS ROW -->
+    <div class="stats-row reveal">
+        <div class="stat-card bg-brown">
+            <div class="stat" style="color:var(--pink);">+3x</div>
+            <div class="stat-label" style="color:var(--pink);" data-i18n="stat1">Engagement medio en campañas vídeo</div>
+        </div>
+        <div class="stat-card bg-pink">
+            <div class="stat">+3M</div>
+            <div class="stat-label" data-i18n="stat2">Visualizaciones en un solo vídeo</div>
+        </div>
+        <div class="stat-card bg-green">
+            <div class="stat-label" data-i18n="stat3">Formación continua:<br>Copywriting · Locución<br>Marketing Digital · IA Generativa</div>
+        </div>
+    </div>
+
+    <!-- TEXT GRID -->
+    <div class="text-grid">
+        <div class="text-card bg-cream reveal">
+            <span class="tag" data-i18n="tag1">Creación de contenido</span>
+            <h2 data-i18n="h1">Vídeo que detiene el scroll</h2>
+            <p data-i18n="p1">Dirijo y produzco contenido audiovisual pensado para redes sociales: formatos cortos, ritmo rápido y narrativa que conecta desde el primer segundo.</p>
+        </div>
+        <div class="text-card bg-green reveal">
+            <span class="tag light" data-i18n="tag2">Reels & TikTok</span>
+            <h2 data-i18n="h2">Formato <em>corto</em></h2>
+            <p data-i18n="p2">Guión, grabación y edición de contenido vertical optimizado para el algoritmo.</p>
+        </div>
+        <div class="text-card bg-cream reveal">
+            <span class="tag" data-i18n="tag3">Marcas</span>
+            <h2 data-i18n="h3">Salud, <em>lifestyle</em> & más</h2>
+            <p data-i18n="p3">He colaborado con marcas de belleza, lifestyle, salud y <em>Real State</em>, adaptando el tono y el formato a cada audiencia.</p>
+        </div>
+        <div class="text-card bg-brown reveal">
+            <h2 data-i18n="h4">Del concepto <em>a la pantalla</em></h2>
+            <p data-i18n="p4">Briefing, guión, dirección, edición y entrega optimizada para cada plataforma. Sin intermediarios, con criterio.</p>
+        </div>
+        <div class="text-card bg-pink reveal" style="grid-column: span 2;">
+            <span class="tag" data-i18n="tag4">¿Hablamos?</span>
+            <h2 data-i18n="h5">Tu historia, <em>mi cámara</em></h2>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20tu%20proyecto" target="_blank" rel="noopener" class="cta-btn" data-i18n="cta">Escríbeme →</a>
+        </div>
+    </div>
+
+    <div class="project-footer">
+        <p>Anna Toledo · Community Manager & Content Creator</p>
+        <a href="ugc.html" class="next-project" data-i18n="next">Siguiente proyecto →</a>
+    </div>
+
+    <script>
+        const i18n = {
+            es: {
+                "back":  "← Volver al inicio",
+                "title": "Community Manager <em>& Content Creator</em>",
+                "meta1": "Producción & Dirección",
+                "meta2": "Social Media Content",
+                "stat1": "Engagement medio en campañas vídeo",
+                "stat2": "Visualizaciones en un solo vídeo",
+                "stat3": "Formación continua:<br>Copywriting · Locución<br>Marketing Digital · IA Generativa",
+                "tag1":  "Creación de contenido",
+                "h1":    "Vídeo que detiene el scroll",
+                "p1":    "Dirijo y produzco contenido audiovisual pensado para redes sociales: formatos cortos, ritmo rápido y narrativa que conecta desde el primer segundo.",
+                "tag2":  "Reels & TikTok",
+                "h2":    "Formato <em>corto</em>",
+                "p2":    "Guión, grabación y edición de contenido vertical optimizado para el algoritmo.",
+                "tag3":  "Marcas",
+                "h3":    "Salud, <em>lifestyle</em> & más",
+                "p3":    "He colaborado con marcas de belleza, lifestyle, salud y <em>Real State</em>, adaptando el tono y el formato a cada audiencia.",
+                "h4":    "Del concepto <em>a la pantalla</em>",
+                "p4":    "Briefing, guión, dirección, edición y entrega optimizada para cada plataforma. Sin intermediarios, con criterio.",
+                "tag4":  "¿Hablamos?",
+                "h5":    "Tu historia, <em>mi cámara</em>",
+                "cta":   "Escríbeme →",
+                "next":  "Siguiente proyecto →"
+            },
+            en: {
+                "back":  "← Back to home",
+                "title": "Community Manager <em>& Content Creator</em>",
+                "meta1": "Production & Direction",
+                "meta2": "Social Media Content",
+                "stat1": "Average engagement in video campaigns",
+                "stat2": "Views on a single video",
+                "stat3": "Ongoing training:<br>Copywriting · Voice-over<br>Digital Marketing · Generative AI",
+                "tag1":  "Content creation",
+                "h1":    "Video that stops the scroll",
+                "p1":    "I direct and produce audiovisual content tailored for social media: short formats, fast pace and a narrative that connects from the very first second.",
+                "tag2":  "Reels & TikTok",
+                "h2":    "<em>Short</em> format",
+                "p2":    "Scripting, filming and editing of vertical content optimised for the algorithm.",
+                "tag3":  "Brands",
+                "h3":    "Health, <em>lifestyle</em> & more",
+                "p3":    "I have collaborated with beauty, lifestyle, health and <em>Real Estate</em> brands, adapting tone and format to each audience.",
+                "h4":    "From concept <em>to screen</em>",
+                "p4":    "Briefing, scripting, direction, editing and platform-optimised delivery. No middlemen, with full creative ownership.",
+                "tag4":  "Let's talk?",
+                "h5":    "Your story, <em>my camera</em>",
+                "cta":   "Write to me →",
+                "next":  "Next project →"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.documentElement.lang = lang;
+            const t = i18n[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+        }
+
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60); });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => obs.observe(el));
+    </script>
+
+</body>
+</html>

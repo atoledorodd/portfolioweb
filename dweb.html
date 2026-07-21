@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo Web & Arquitectura Digital | Anna Toledo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ffc4e1;
+            --brown: #3f221b;
+            --cream: #f9f7ed;
+            --green: #b6d545;
+            --font-main: 'Poppins', sans-serif;
+        }
+        /* Lang switcher */
+        .lang-container { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .lang-button { background: var(--brown); border: 2px solid var(--brown); padding: 8px 16px; border-radius: 25px; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-main); color: var(--cream); }
+        .dropdown-content { display: none; position: absolute; right: 0; background: var(--cream); border: 2px solid var(--brown); width: 130px; margin-top: 5px; border-radius: 10px; overflow: hidden; }
+        .dropdown-content a { display: block; padding: 10px; text-decoration: none; color: var(--brown); font-weight: 600; font-family: var(--font-main); }
+        .dropdown-content a:hover { background: var(--brown); color: var(--cream); }
+        .lang-container:hover .dropdown-content { display: block; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--green); color: var(--brown); min-height: 100vh; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 24px 40px; font-weight: 900; font-size: 0.85rem;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            text-decoration: none; color: var(--brown); transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.6; }
+
+        .project-hero {
+            padding: 0 40px 60px;
+            display: flex; align-items: flex-end;
+            justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+        .project-hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem); font-weight: 900;
+            text-transform: uppercase; line-height: 0.95; max-width: 700px;
+        }
+        .project-hero h1 em {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-weight: 700; text-transform: none;
+        }
+        .project-meta { font-size: 0.9rem; font-weight: 600; text-align: right; line-height: 1.8; opacity: 0.7; }
+
+        .divider { height: 3px; background-color: var(--brown); margin: 0 40px 60px; }
+
+        .moodboard {
+            padding: 0 40px 80px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 80px;
+            gap: 16px;
+        }
+
+        .block { border-radius: 4px; overflow: hidden; position: relative; }
+
+        .img-block { background-color: var(--cream); display: flex; align-items: center; justify-content: center; }
+        .img-block .placeholder-label { font-size: 0.7rem; font-weight: 600; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 10px; }
+        .img-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .text-block { display: flex; flex-direction: column; justify-content: center; padding: 24px; }
+        .text-block.bg-cream { background-color: var(--cream); }
+        .text-block.bg-brown { background-color: var(--brown); color: var(--cream); }
+        .text-block.bg-green { background-color: var(--green); border: 2px solid var(--brown); }
+        .text-block.bg-pink  { background-color: var(--pink); }
+
+        .text-block h2 { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 10px; }
+        .text-block h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .text-block p { font-size: 0.88rem; font-weight: 400; line-height: 1.6; opacity: 0.85; }
+        .text-block .stat { font-size: clamp(1.5rem, 3vw, 3rem); font-weight: 900; line-height: 1; word-break: break-word; }
+        .text-block .stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-top: 6px; }
+
+        .tag { display: inline-block; background-color: var(--brown); color: var(--pink); font-size: 0.7rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; width: fit-content; }
+        .tag.light { background-color: var(--pink); color: var(--brown); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .project-footer { border-top: 3px solid var(--brown); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-footer p { font-weight: 600; font-size: 0.9rem; opacity: 0.6; }
+        .next-project { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--brown); transition: opacity 0.2s; }
+        .next-project:hover { opacity: 0.6; }
+
+        /* CTA btn — flexible para no cortarse */
+        .cta-btn {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid var(--brown);
+            color: var(--brown);
+            font-family: var(--font-main);
+            font-weight: 900;
+            font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: opacity 0.2s;
+            white-space: normal;
+            word-break: break-word;
+            max-width: 100%;
+        }
+        .cta-btn:hover { opacity: 0.65; }
+
+        /* El bloque de cierre necesita más espacio interno */
+        .cierre-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .cierre-block h2 { font-size: clamp(0.9rem, 2vw, 1.8rem); font-weight: 900; text-transform: uppercase; line-height: 1.15; margin-bottom: 8px; }
+        .cierre-block h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+
+        @media (max-width: 768px) {
+            .project-hero, .moodboard, .project-footer { padding-left: 20px; padding-right: 20px; }
+            .divider { margin-left: 20px; margin-right: 20px; }
+            .moodboard { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+            .block { grid-column: auto !important; grid-row: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-container">
+        <div class="lang-button">🌐 <span id="current-lang">ES</span></div>
+        <div class="dropdown-content">
+            <a href="#" onclick="changeLanguage('es'); return false;">ES Español</a>
+            <a href="#" onclick="changeLanguage('en'); return false;">EN English</a>
+        </div>
+    </div>
+
+    <a href="Portfolio web.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }"><span data-i18n="back">← Volver al inicio</span></a>
+
+    <div class="project-hero reveal">
+        <h1 data-i18n="title">Desarrollo <em>Web</em> & <em>Arquitectura</em> Digital</h1>
+        <div class="project-meta">
+            <p data-i18n="meta1">Desarrollo Web</p>
+            <p data-i18n="meta2">Back-end & Front-end</p>
+            <p data-i18n="meta3">2017 — Actualidad</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="moodboard">
+
+        <div class="block text-block bg-brown reveal" style="grid-column: 1/6; grid-row: 1/5;">
+            <span class="tag light" data-i18n="tag1">web</span>
+            <h2 data-i18n="h1">Arquitectura de la persuasión</h2>
+            <p data-i18n="p1">Diseño y programo sitios web desde cero, porque no entiendo el código sin una estrategia detrás. Fusiono el desarrollo técnico en HTML con una visión de marketing orientada a la conversión: construyo espacios digitales que no solo cargan rápido, sino que hablan el lenguaje de tu cliente y transforman visitas en conexiones reales.</p>
+        </div>
+
+        <div class="block img-block reveal" style="grid-column: 6/9; grid-row: 1/5;">
+            <img src="fotos/comunidad1.jpg" alt="Feed" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>comunidad1.jpg</div>
+        </div>
+
+        <div class="block text-block bg-pink reveal" style="grid-column: 9/13; grid-row: 1/3;">
+            <div class="stat" data-i18n="stat1">Desarrollo</div>
+            <div class="stat-label" data-i18n="stat1b">con su seguimiento posterior.</div>
+        </div>
+
+        <div class="block text-block bg-cream reveal" style="grid-column: 9/13; grid-row: 3/5;">
+            <div class="stat" data-i18n="stat2">tu WEB</div>
+            <div class="stat-label" data-i18n="stat2b">En una semana</div>
+        </div>
+
+        <div class="block img-block reveal" style="grid-column: 1/5; grid-row: 5/9;">
+            <img src="fotos/comunidad2.jpg" alt="Embajadores" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>comunidad2.jpg</div>
+        </div>
+
+        <div class="block text-block bg-pink reveal" style="grid-column: 5/9; grid-row: 5/8;">
+            <h2 data-i18n="h2">Webs vivas <em>y posicionadas</em></h2>
+            <p data-i18n="p2">Gestiono el mantenimiento, las actualizaciones y tu estrategia SEO/SEM para que tu marca nunca deje de ser relevante.</p>
+        </div>
+
+        <div class="block img-block reveal" style="grid-column: 9/13; grid-row: 5/9;">
+            <img src="fotos/comunidad3.jpg" alt="Contenido" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>comunidad3.jpg</div>
+        </div>
+
+        <div class="block text-block bg-cream reveal" style="grid-column: 5/9; grid-row: 8/11;">
+            <span class="tag light" data-i18n="tag2">Trabajo con...</span>
+            <p style="font-weight:700; font-size:0.95rem; line-height:2;">HTML<br>CSS<br>PYTHON</p>
+        </div>
+
+        <div class="block text-block bg-brown reveal" style="grid-column: 1/4; grid-row: 9/12;">
+            <div class="stat" style="color:var(--pink);">12+</div>
+            <div class="stat-label" style="color:var(--pink);">Marcas<br>gestionadas</div>
+        </div>
+
+        <!-- Foto 4: recorte parte inferior -->
+        <div class="block img-block reveal" style="grid-column: 9/13; grid-row: 9/12;">
+            <img src="fotos/comunidad4.jpg" alt="Resultado" style="object-position: center 70%;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>comunidad4.jpg</div>
+        </div>
+
+        <div class="block text-block bg-pink reveal" style="grid-column: 4/9; grid-row: 11/13;">
+            <span class="tag" data-i18n="tag3">El proceso</span>
+            <h2 data-i18n="h5">Estrategia → Contenido → <em>Resultados</em></h2>
+            <p data-i18n="p3">Analizo la audiencia, defino el tono, creo el calendario y mido cada acción. <strong>Sin improvisar.</strong></p>
+        </div>
+
+        <!-- Bloque cierre con cta adaptado -->
+        <div class="block cierre-block bg-brown reveal" style="grid-column: 9/13; grid-row: 12/14; background-color: var(--brown); color: var(--cream);">
+            <span class="tag light" style="flex-shrink:0;" data-i18n="tag4">¿Hablamos?</span>
+            <h2 data-i18n="h4">¿Tienes una marca? <em>Tienes una web</em></h2>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20web" target="_blank" rel="noopener" class="cta-btn" style="color:var(--pink); border-color:var(--pink);" data-i18n="cta">Escríbeme →</a>
+        </div>
+
+        <!-- Foto 5: sin línea blanca derecha -->
+        <div class="block img-block reveal" style="grid-column: 1/4; grid-row: 12/14; overflow: hidden;">
+            <img src="fotos/comunidad5.jpg" alt="Final" style="object-fit: cover; object-position: center center; transform: scale(1.15); transform-origin: center center;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-label" style="display:none;">📷<br>comunidad5.jpg</div>
+        </div>
+
+    </div>
+
+    <div class="project-footer">
+        <p>Anna Toledo · Desarrollo Web</p>
+        <a href="produ.html" class="next-project"><span data-i18n="next">Siguiente proyecto →</span></a>
+    </div>
+
+    <script>
+        const i18n = {
+            es: {
+                "back":  "← Volver al inicio",
+                "title": "Desarrollo <em>Web</em> & Arquitectura<em> Digital</em>",
+                "meta1": "Desarrollo Web",
+                "meta2": "Back-end & Front-end",
+                "meta3": "2017 — Present",
+                "h1": "Arquitectura de la persuasión",
+                "h2": "Webs vivas <em>y posicionadas</em>",
+                "h3": "Customer <em>Experience</em>",
+                "h4": "¿Tienes una marca? <em>Tienes una web</em>",
+                "tag1": "web",
+                "p1": "Diseño y programo sitios web desde cero, porque no entiendo el código sin una estrategia detrás. Fusiono el desarrollo técnico en HTML con una visión de marketing orientada a la conversión: construyo espacios digitales que no solo cargan rápido, sino que hablan el lenguaje de tu cliente y transforman visitas en conexiones reales.",
+                "stat1": "Desarrollo",
+                "stat1b": "con su seguimiento posterior.",
+                "stat2": "tu WEB",
+                "stat2b": "En una semana",
+                "p2": "Gestiono el mantenimiento, las actualizaciones y tu estrategia SEO/SEM para que tu marca nunca deje de ser relevante.",
+                "tag2": "Trabajo con...",
+                "tag3": "El proceso",
+                "h5": "Estrategia → Contenido → <em>Resultados</em>",
+                "p3": "Analizo la audiencia, defino el tono, creo el calendario y mido cada acción. <strong>Sin improvisar.</strong>",
+                "tag4": "¿Hablamos?",
+                "cta": "Escríbeme →",
+                "next": "Siguiente proyecto →"
+            },
+            en: {
+                "back":  "← Back to home",
+                "title": "Web <em>Development</em> & Digital<em> Architecture</em>",
+                "meta1": "Web Development",
+                "meta2": "Back-end & Front-end",
+                "meta3": "2017 — Present",
+                "h1": "Architecture of persuasion",
+                "h2": "Living <em>& positioned</em> websites",
+                "h3": "Customer <em>Experience</em>",
+                "h4": "Got a brand? <em>You need a website</em>",
+                "tag1": "web",
+                "p1": "I design and build websites from scratch, because I cannot separate code from strategy. I blend technical development with a conversion-focused marketing vision: digital spaces that load fast and speak your client's language, turning visits into real connections.",
+                "stat1": "Development",
+                "stat1b": "with ongoing support.",
+                "stat2": "your WEB",
+                "stat2b": "In one week",
+                "p2": "I manage maintenance, updates and your SEO/SEM strategy so your brand never stops being relevant.",
+                "tag2": "I work with...",
+                "tag3": "The process",
+                "h5": "Strategy → Content → <em>Results</em>",
+                "p3": "I analyse the audience, define the tone, build the calendar and measure every action. <strong>No improvising.</strong>",
+                "tag4": "Shall we talk?",
+                "cta": "Write to me →",
+                "next": "Next project →"
+            }
+        };
+        function changeLanguage(lang) {
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.documentElement.lang = lang;
+            const t = i18n[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+        }
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60); });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => obs.observe(el));
+    </script>
+
+</body>
+</html>

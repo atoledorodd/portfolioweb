@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anna Toledo | Website</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='6' fill='%233f221b'/%3E%3Csvg width='52' height='52' viewBox='0 0 52 52' fill='none'%3E%3Cline x1='4' y1='46' x2='13' y2='8' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3Cline x1='13' y1='8' x2='22' y2='46' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3Cline x1='6.5' y1='30' x2='19.5' y2='30' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3Cline x1='28' y1='8' x2='42' y2='8' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3Cline x1='35' y1='8' x2='35' y2='46' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3Cline x1='46' y1='8' x2='46' y2='46' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M46 8 Q58 8 58 19 Q58 30 46 30' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cline x1='51' y1='30' x2='58' y2='46' stroke='%23ffc4e1' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -205,7 +206,8 @@
             );
             box-shadow: 0 0 40px rgba(249,247,237,0.3);
             border: 1.5px solid rgba(249,247,237,0.4);
-            animation: none;
+            animation: spinDisc 8s linear infinite;
+            animation-play-state: paused;
             position: relative;
         }
 
@@ -220,41 +222,40 @@
             border: 2px solid rgba(63,34,27,0.5);
             z-index: 2;
         }
-
+        /* orbit-logo wrapper keeps position, inner img rotates back */
 
         /* === LOGOS EN ÓRBITA === */
         .orbit-ring {
             position: absolute;
-            top: calc(50% - 40px);
+            top: -40px;
             left: 50%;
-            width: 0;
-            height: 0;
-            z-index: 2; /* detrás de Anna (z-index:3) */
-            animation: none;
+            margin-left: -240px;
+            width: 480px;
+            height: 480px;
+            z-index: 2;
+            animation: spinDisc 8s linear infinite;
+            animation-play-state: paused;
         }
-
-        .orbit-arm {
-            position: absolute;
-            width: 200px;
-            height: 0;
-            top: 0;
-            left: 0;
-            transform-origin: 0 0;
-            transform: rotate(var(--deg));
-        }
-
         .orbit-logo {
             position: absolute;
             width: 54px;
             height: 54px;
             object-fit: contain;
-            right: -27px;
-            top: -27px;
+            transform: translate(-50%, -50%);
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
-            /* No CSS animation — JS handles counter-rotation */
         }
-            to   { transform: rotate(-360deg); }
-        }
+        .orbit-logo:nth-child(1) { top: 9.4%; left: 50.0%; }
+        .orbit-logo:nth-child(2) { top: 14.8%; left: 70.3%; }
+        .orbit-logo:nth-child(3) { top: 29.7%; left: 85.2%; }
+        .orbit-logo:nth-child(4) { top: 50.0%; left: 90.6%; }
+        .orbit-logo:nth-child(5) { top: 70.3%; left: 85.2%; }
+        .orbit-logo:nth-child(6) { top: 85.2%; left: 70.3%; }
+        .orbit-logo:nth-child(7) { top: 90.6%; left: 50.0%; }
+        .orbit-logo:nth-child(8) { top: 85.2%; left: 29.7%; }
+        .orbit-logo:nth-child(9) { top: 70.3%; left: 14.8%; }
+        .orbit-logo:nth-child(10) { top: 50.0%; left: 9.4%; }
+        .orbit-logo:nth-child(11) { top: 29.7%; left: 14.8%; }
+        .orbit-logo:nth-child(12) { top: 14.8%; left: 29.7%; }
 
         @keyframes spinDisc {
             from { transform: rotate(0deg); }
@@ -373,57 +374,32 @@
         <div class="hero-collage">
             <div class="hero-text reveal">
                 <h1>Anna Toledo</h1>
-                <p class="hero-desc">Transformo visiones en realidades audiovisuales. Mi trabajo no es solo producir, es tender puentes entre tu estrategia de negocio y la forma en la que conectas con tu audiencia. Trabajo con rigor técnico, pero con la mirada puesta en lo que realmente importa: <strong>las personas.</strong></p>
-                <a href="#work" class="hero-cta">Explora mi trabajo</a>
+                <p class="hero-desc" data-i18n="hero.desc">Transformo visiones en realidades audiovisuales. Mi trabajo no es solo producir, es tender puentes entre tu estrategia de negocio y la forma en la que conectas con tu audiencia. Trabajo con rigor técnico, pero con la mirada puesta en lo que realmente importa: <strong>las personas.</strong></p>
+                <a href="#work" class="hero-cta" data-i18n="hero.cta">Explora mi trabajo</a>
             </div>
             <div class="hero-scene" id="hero-scene">
                 <!-- DISCO VINILO GIRATORIO — detrás de todo -->
                 <!-- Anna principal (fija, centro) -->
-                <img src="2.png" class="scene-el anna" alt="Anna Toledo">
+                <img src="fotos/2.png" class="scene-el anna" alt="Anna Toledo">
                 <div class="scene-el vinyl-wrap">
-                    <div class="vinyl-disc">
+                    <div class="vinyl-disc" id="vinyl-disc">
                         <div class="vinyl-hole"></div>
                     </div>
                 </div>
-
-                <!-- Logos orbitando -->
-                <div class="orbit-ring" id="orbit-ring">
-                    <div class="orbit-arm" style="--deg:0.0deg;">
-                        <img src="19.png" class="orbit-logo" alt="YouTube">
-                    </div>
-                    <div class="orbit-arm" style="--deg:30.0deg;">
-                        <img src="6.png" class="orbit-logo" alt="Claude">
-                    </div>
-                    <div class="orbit-arm" style="--deg:60.0deg;">
-                        <img src="7.png" class="orbit-logo" alt="TikTok">
-                    </div>
-                    <div class="orbit-arm" style="--deg:90.0deg;">
-                        <img src="8.png" class="orbit-logo" alt="Canva">
-                    </div>
-                    <div class="orbit-arm" style="--deg:120.0deg;">
-                        <img src="9.png" class="orbit-logo" alt="ChatGPT">
-                    </div>
-                    <div class="orbit-arm" style="--deg:150.0deg;">
-                        <img src="10.png" class="orbit-logo" alt="Instagram">
-                    </div>
-                    <div class="orbit-arm" style="--deg:180.0deg;">
-                        <img src="12.png" class="orbit-logo" alt="Microsoft">
-                    </div>
-                    <div class="orbit-arm" style="--deg:210.0deg;">
-                        <img src="14.png" class="orbit-logo" alt="LinkedIn">
-                    </div>
-                    <div class="orbit-arm" style="--deg:240.0deg;">
-                        <img src="15.png" class="orbit-logo" alt="Premiere">
-                    </div>
-                    <div class="orbit-arm" style="--deg:270.0deg;">
-                        <img src="16.png" class="orbit-logo" alt="Facebook">
-                    </div>
-                    <div class="orbit-arm" style="--deg:300.0deg;">
-                        <img src="17.png" class="orbit-logo" alt="Empresas">
-                    </div>
-                    <div class="orbit-arm" style="--deg:330.0deg;">
-                        <img src="18.png" class="orbit-logo" alt="GitHub">
-                    </div>
+                <!-- Anillo de logos: gira con CSS, logos se contrarrestan con CSS -->
+                <div class="scene-el orbit-ring" id="orbit-ring">
+                    <img src="fotos/19.png" class="orbit-logo" alt="YouTube">
+                    <img src="fotos/6.png"  class="orbit-logo" alt="Claude">
+                    <img src="fotos/7.png"  class="orbit-logo" alt="TikTok">
+                    <img src="fotos/8.png"  class="orbit-logo" alt="Canva">
+                    <img src="fotos/9.png"  class="orbit-logo" alt="ChatGPT">
+                    <img src="fotos/10.png" class="orbit-logo" alt="Instagram">
+                    <img src="fotos/12.png" class="orbit-logo" alt="Microsoft">
+                    <img src="fotos/14.png" class="orbit-logo" alt="LinkedIn">
+                    <img src="fotos/15.png" class="orbit-logo" alt="Premiere">
+                    <img src="fotos/16.png" class="orbit-logo" alt="Facebook">
+                    <img src="fotos/17.png" class="orbit-logo" alt="Empresas">
+                    <img src="fotos/18.png" class="orbit-logo" alt="GitHub">
                 </div>
                 <button class="vinyl-btn" id="vinyl-btn" onclick="toggleVinyl()">▶ Play</button>
             </div>
@@ -435,44 +411,44 @@
         <div class="journey-left reveal-left">
             <div class="video-container">
                 <video autoplay muted loop playsinline poster="tu-imagen-de-portada.jpg" style="width: 100%; border-radius: 10px;">
-                    <source src="video1.mov" type="video/mp4">
+                    <source src="fotos/video1.mov" type="video/mp4">
                 </video>
             </div>
-            <div class="journey-quote">
+            <div class="journey-quote" data-i18n="journey.quote">
                 "La gente olvidará lo que dijiste, la gente olvidará lo que hiciste, pero la gente nunca olvidará cómo la hiciste sentir." — <em>Maya Angelou</em>
             </div>
         </div>
         <div class="journey-right reveal-right">
-            <h2>MI trayectoria</h2>
-            <p>Mi carrera empezó en la primera línea: la atención directa al cliente. Fue ahí donde aprendí a escuchar de verdad, una habilidad que más tarde se convirtió en el motor de mi creatividad durante la carrera de <strong>Comunicación Audiovisual</strong>. Entender qué necesita la gente fue la base sobre la que construí mi experiencia en producción y gestión de crisis. Hoy, aplico toda esa trayectoria en el mundo del <strong>marketing y las redes sociales</strong>: creando estrategias que, más que vender, conectan, resuelven y aportan valor real. Trabajo con equipos y proyectos donde la coherencia y la honestidad son las reglas del juego.</p>
+            <h2 data-i18n="journey.title">MI trayectoria</h2>
+            <p data-i18n="journey.body">Mi carrera empezó en la primera línea: la atención directa al cliente. Fue ahí donde aprendí a escuchar de verdad, una habilidad que más tarde se convirtió en el motor de mi creatividad durante la carrera de <strong>Comunicación Audiovisual</strong>. Entender qué necesita la gente fue la base sobre la que construí mi experiencia en producción y gestión de crisis. Hoy, aplico toda esa trayectoria en el mundo del <strong>marketing y las redes sociales</strong>: creando estrategias que, más que vender, conectan, resuelven y aportan valor real. Trabajo con equipos y proyectos donde la coherencia y la honestidad son las reglas del juego.</p>
         </div>
     </div>
 
     <!-- 3. SERVICES -->
     <div class="services-section">
         <div class="services-left">
-            <h2>LO QUE PUEDO HACER POR TI</h2>
+            <h2 data-i18n="services.title">LO QUE PUEDO HACER POR TI</h2>
         </div>
         <div class="services-right">
             <div class="service-card reveal delay-1">
                 <div class="service-icon"></div>
                 <div class="service-text">
-                    <h3>Estrategia Digital &amp; Social</h3>
-                    <p>Llevo el marketing de tu marca de principio a fin. Me encargo del calendario editorial, la gestión de redes sociales y la optimización SEO/SEM para que tu presencia online no solo exista, sino que funcione.</p>
+                    <h3 data-i18n="s1.title">Estrategia Digital &amp; Social</h3>
+                    <p data-i18n="s1.desc">Llevo el marketing de tu marca de principio a fin. Me encargo del calendario editorial, la gestión de redes sociales y la optimización SEO/SEM para que tu presencia online no solo exista, sino que funcione.</p>
                 </div>
             </div>
             <div class="service-card reveal delay-2">
                 <div class="service-icon"></div>
                 <div class="service-text">
-                    <h3>Producción Audiovisual</h3>
-                    <p>Grabo, edito y dirijo contenido audiovisual específico para redes sociales. Mi objetivo es que tus vídeos tengan la calidad técnica que tu marca necesita y el ritmo que los algoritmos piden para retener a la audiencia.</p>
+                    <h3 data-i18n="s2.title">Content Creator</h3>
+                    <p data-i18n="s2.desc">Grabo, edito y dirijo contenido audiovisual específico para redes sociales. Mi objetivo es que tus vídeos tengan la calidad técnica que tu marca necesita y el ritmo que los algoritmos piden para retener a la audiencia.</p>
                 </div>
             </div>
             <div class="service-card reveal delay-3">
                 <div class="service-icon"></div>
                 <div class="service-text">
-                    <h3>Formación &amp; Comunidad</h3>
-                    <p>Especialista en formación corporativa y gestión de clientes. Aprovecho mis años de experiencia en atención directa para enseñarte a ti o a tu equipo a gestionar comunidades, resolver crisis y conectar de verdad con quien está al otro lado.</p>
+                    <h3 data-i18n="s3.title">Formación &amp; Asesorias</h3>
+                    <p data-i18n="s3.desc">Especialista en formación corporativa y gestión de clientes. Aprovecho mis años de experiencia en atención directa para enseñarte a ti o a tu equipo a gestionar comunidades, resolver crisis y conectar de verdad con quien está al otro lado.</p>
                 </div>
             </div>
         </div>
@@ -480,69 +456,69 @@
 
     <!-- 4. WINS / CARRUSEL DE PROYECTOS -->
     <div class="container wins-section" id="work">
-        <h2 class="reveal">LOGROS Y ÉXITOS</h2>
+        <h2 class="reveal" data-i18n="wins.title">LO QUE HAGO</h2>
         <div class="carousel-wrapper">
             <button class="carousel-arrow" id="wins-prev" aria-label="Anterior">&#8249;</button>
             <div class="carousel-viewport">
                 <div class="carousel-track" id="wins-track">
                     <div class="win-card">
                         <div class="win-img">
-                            <img src="foto2.jpg" alt="Community Manager">
+                            <img src="fotos/foto3.jpg" alt="Contenido UGC">
                         </div>
                         <div class="win-content">
-                            <h3>Community Manager & Content Creator</h3>
-                            <p>Creadora de contenido viral: responsable de hitos de +3M de visualizaciones y estrategias de crecimiento acelerado.</p>
-                            <a href="campanas-audiovisuales.html" class="win-btn">Ver Proyecto</a>
+                            <h3 data-i18n="w2.title">Contenido UGC</h3>
+                            <p data-i18n="w2.desc">Creadora de contenido UGC enfocado en la conversión real: convierto productos en historias que el usuario final quiere ver y comprar.</p>
+                            <a href="ugc.html" class="win-btn" data-i18n="wins.btn">Ver Proyecto</a>
+                        </div>
+                    </div>
+                   <div class="win-card">
+                        <div class="win-img">
+                            <img src="fotos/aseso1.jpeg" alt="Contenido UGC">
+                        </div>
+                        <div class="win-content">
+                            <h3 data-i18n="w6.title">Asesorías & Formación</h3>
+                            <p data-i18n="w6.desc">Sesiones online personalizadas: IA, RRSS, edición de vídeo, estrategia y marca personal.</p>
+                            <a href="asesorias.html" class="win-btn" data-i18n="w6.btn">Ver Servicios</a>
+                    </div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-img">
+                            <img src="fotos/foto4.jpg" alt="Desarrollo Web" style="object-position: center top;">
+                        </div>
+                        <div class="win-content">
+                            <h3 data-i18n="w3.title">Desarrollo Web & Arquitectura Digital</h3>
+                            <p data-i18n="w3.desc">Tu presencia online, optimizada y a medida</p>
+                            <a href="dweb.html" class="win-btn" data-i18n="wins.btn">Ver Proyecto</a>
                         </div>
                     </div>
                     <div class="win-card">
                         <div class="win-img">
-                            <img src="foto3.jpg" alt="Contenido UGC">
+                            <img src="fotos/foto2.jpg" alt="Community Manager">
                         </div>
                         <div class="win-content">
-                            <h3>Contenido UGC</h3>
-                            <p>Creadora de contenido UGC enfocado en la conversión real: convierto productos en historias que el usuario final quiere ver y comprar.</p>
-                            <a href="lanzamiento-marca.html" class="win-btn">Ver Proyecto</a> 
+                            <h3 data-i18n="w1.title">Community Manager & Content Creator</h3>
+                            <p data-i18n="w1.desc">Creadora de contenido viral: responsable de hitos de +3M de visualizaciones y estrategias de crecimiento acelerado.</p>
+                            <a href="cm.html" class="win-btn" data-i18n="wins.btn">Ver Proyecto</a>
                         </div>
                     </div>
                     <div class="win-card">
                         <div class="win-img">
-                            <img src="foto4.jpg" alt="Desarrollo Web">
+                            <img src="fotos/foto7.jpg" alt="Community Building">
                         </div>
                         <div class="win-content">
-                            <h3>Desarrollo Web & Arquitectura Digital</h3>
-                            <p>Tu presencia online, optimizada y a medida</p>
-                            <a href="crecimiento-comunidad.html" class="win-btn">Ver Proyecto</a>
+                            <h3 data-i18n="w5.title">Community Building</h3>
+                            <p data-i18n="w5.desc">Especialista en la creación y dinamización de comunidades, con experiencia gestionando eventos.</p>
+                            <a href="cb.html" class="win-btn" data-i18n="wins.btn">Ver Proyecto</a>
                         </div>
                     </div>
                     <div class="win-card">
                         <div class="win-img">
-                            <img src="foto5.jpeg" alt="Mentoring">
+                            <img src="fotos/foto6.jpg" alt="Producción Audiovisual" style="object-position: center;">
                         </div>
                         <div class="win-content">
-                            <h3>Mentoring Estratégico y Liderazgo Operativo</h3>
-                            <p>Liderazgo en entornos críticos: gestión, formación y resolución bajo presión.</p>
-                            <a href="formacion-corporativa.html" class="win-btn">Ver Proyecto</a>
-                        </div>
-                    </div>
-                    <div class="win-card">
-                        <div class="win-img">
-                            <img src="foto6.jpg" alt="Producción Audiovisual">
-                        </div>
-                        <div class="win-content">
-                            <h3>Producción Audiovisual</h3>
-                            <p>Gestión de equipos +30 personas y ejecución de proyectos de alto impacto cultural.</p>
-                            <a href="serie-documental.html" class="win-btn">Ver Proyecto</a>
-                        </div>
-                    </div>
-                    <div class="win-card">
-                        <div class="win-img">
-                            <img src="foto7.jpg" alt="Community Building">
-                        </div>
-                        <div class="win-content">
-                            <h3>Community Building</h3>
-                            <p>Especialista en la creación y dinamización de comunidades, con experiencia gestionando eventos.</p>
-                            <a href="programa-embajadores.html" class="win-btn">Ver Proyecto</a>
+                            <h3 data-i18n="w4.title">Producción Audiovisual</h3>
+                            <p data-i18n="w4.desc">Gestión de equipos +30 personas y ejecución de proyectos de alto impacto cultural.</p>
+                            <a href="produ.html" class="win-btn" data-i18n="wins.btn">Ver Proyecto</a>
                         </div>
                     </div>
                 </div>
@@ -551,75 +527,29 @@
         </div>
     </div>
 
-    <!-- 5. TESTIMONIALS / CARRUSEL -->
-    <div class="testimonials-header">
-        <h2>TESTIMONIOS</h2>
-    </div>
-    <div class="test-carousel-section">
-        <div class="test-carousel-wrapper">
-            <button class="carousel-arrow" id="test-prev" aria-label="Anterior">&#8249;</button>
-            <div class="test-carousel-viewport">
-                <div class="test-carousel-track" id="test-track">
-                    <div class="test-card cream">
-                        <div class="test-img"><img src="test1.png" onerror="this.style.visibility='hidden'" alt="Op Julia"></div>
-                        <p class="test-text">"Trabajar con Anna es colaborar con alguien que aporta buen rollo y mucha profesionalidad al equipo, es alguien que no quería dejar escapar."</p>
-                        <strong>Marketing Manager - Enter Coliving</strong>
-                    </div>
-                    <div class="test-card green">
-                        <div class="test-img"><img src="test6.jpg" onerror="this.style.visibility='hidden'" alt="Op Laura" style="object-position: center top;"></div>
-                        <p class="test-text">"Trabajar con Anna es saber que el rodaje va a funcionar perfecto: seria, organizada y eficiente. Recomiendo."</p>
-                        <strong>Laura Trunas - Directora de Fotografía</strong>
-                    </div>
-                    <div class="test-card green">
-                        <div class="test-img"><img src="test2.jpg" onerror="this.style.visibility='hidden'" alt="Op Sofi" style="object-position: center top;"></div>
-                        <p class="test-text">"Estar grabando con Anna es tranquilidad absoluta, te hace sentir muy cómoda, reirte y desbloquearte frente a cámara."</p>
-                        <strong>Doctora Sofi Generalli</strong>
-                    </div>
-                    <div class="test-card cream">
-                        <div class="test-img"><img src="test3.jpg" onerror="this.style.visibility='hidden'" alt="OP jefa/e TMB"></div>
-                        <p class="test-text">"Anna es una profesional de los pies a la cabeza, se adapta con mucha facilidad a cualquier persona y sabe explicar de forma muy efectiva los cursos."</p>
-                        <strong>Responsable de Zona TMB</strong>
-                    </div>
-                     <div class="test-card cream">
-                        <div class="test-img"><img src="test5.jpg" onerror="this.style.visibility='hidden'" alt="javi o dama por forms"></div>
-                        <p class="test-text">"Su formación corporativa transformó la manera en la que nuestro equipo gestiona el funcionamiento de los trenes. Cercana y muy profesional."</p>
-                        <strong>AAC's TMB</strong>
-                    </div>
-                    <div class="test-card green">
-                        <div class="test-img"><img src="test4.jpeg" onerror="this.style.visibility='hidden'" alt="Op Angel, dia drassanes"></div>
-                        <p class="test-text">"Anna tiene un don organizativo innato, es capaz de gestionar personas con un talento y facilidad. Gracias a ella gestionamos opertivas de mucho volumen de personas con éxito."</p>
-                        <strong>Ángel Ortega - AAC TMB </strong>
-                    </div>
-
-                </div>
-            </div>
-            <button class="carousel-arrow" id="test-next" aria-label="Siguiente">&#8250;</button>
-        </div>
-    </div>
-
     <!-- 6. CONNECT -->
     <div class="container connect-section">
         <div class="connect-left">
-            <h2>CONECTEMOS</h2>
+            <h2 data-i18n="connect.title">CONECTEMOS</h2>
             <div class="cv-buttons">
-                <a href="cv-es.pdf" download class="cv-btn">⬇ Descargar CV</a>
-                <a href="cv-en.pdf" download class="cv-btn cv-btn-en">⬇ Download CV</a>
+                <a href="fotos/cv-es.pdf" download class="cv-btn">⬇ Descargar CV</a>
+                <a href="fotos/cv-en.pdf" download class="cv-btn cv-btn-en">⬇ Download CV</a>
             </div>
         </div>
         <div class="connect-right">
             <div class="notebook">
                 <p>Instagram: <a href="https://instagram.com/atoledorodd" target="_blank">@atoledorodd</a></p>
                 <p>LinkedIn: <a href="https://linkedin.com/in/atoledorodd" target="_blank">linkedin.com/in/atoledorodd</a></p>
-                <p>Ubicación: Eibar, Euskadi</p>
+                <p data-i18n="connect.location">Ubicación: Eibar, Euskadi</p>
             </div>
             <div class="mailto-box">
-                <p class="mailto-text">¿Te animas? Escríbeme directamente y te respondo lo antes posible.</p>
+                <p class="mailto-text" data-i18n="connect.cta">¿Te animas? Escríbeme directamente y te respondo lo antes posible.</p>
                 <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20tu%20proyecto" target="_blank" rel="noopener" class="submit-btn mailto-btn">
-                    Contáctame
+                    <span data-i18n="connect.btn">Contáctame</span>
                 </a>
                 <p class="mailto-fallback">
-                    ¿No se abre Gmail?
-                    <button type="button" class="copy-email-btn" onclick="copyEmail(this)">Copiar email</button>
+                    <span data-i18n="connect.gmail">¿No se abre Gmail?</span>
+                    <button type="button" class="copy-email-btn" onclick="copyEmail(this)" data-i18n="connect.copy">Copiar email</button>
                 </p>
             </div>
         </div>
@@ -646,8 +576,114 @@
         setInterval(updateClock, 10000);
 
         // Idioma (placeholder simple, se puede ampliar)
+        // === SISTEMA DE TRADUCCIÓN ===
+        const i18n = {
+            es: {
+                "hero.desc": "Transformo visiones en realidades audiovisuales. Mi trabajo no es solo producir, es tender puentes entre tu estrategia de negocio y la forma en la que conectas con tu audiencia. Trabajo con rigor técnico, pero con la mirada puesta en lo que realmente importa: <strong>las personas.</strong>",
+                "hero.cta": "Explora mi trabajo",
+                "journey.title": "MI trayectoria",
+                "journey.quote": "\"La gente olvidará lo que dijiste, la gente olvidará lo que hiciste, pero la gente nunca olvidará cómo la hiciste sentir.\" — <em>Maya Angelou</em>",
+                "services.title": "LO QUE PUEDO HACER POR TI",
+                "s1.title": "Estrategia Digital & Social",
+                "s1.desc": "Llevo el marketing de tu marca de principio a fin. Me encargo del calendario editorial, la gestión de redes sociales y la optimización SEO/SEM para que tu presencia online no solo exista, sino que funcione.",
+                "s2.title": "Content Creator",
+                "s2.desc": "Grabo, edito y dirijo contenido audiovisual específico para redes sociales. Mi objetivo es que tus vídeos tengan la calidad técnica que tu marca necesita y el ritmo que los algoritmos piden para retener a la audiencia.",
+                "s3.title": "Formación & Comunidad",
+                "s3.desc": "Especialista en formación corporativa y gestión de clientes. Aprovecho mis años de experiencia en atención directa para enseñarte a ti o a tu equipo a gestionar comunidades, resolver crisis y conectar de verdad con quien está al otro lado.",
+                "wins.title": "LO QUE HAGO",
+                "connect.title": "CONECTEMOS",
+                "connect.location": "Ubicación: Eibar, Euskadi",
+                "connect.cta": "¿Te animas? Escríbeme directamente y te respondo lo antes posible.",
+                "connect.btn": "Contáctame",
+                "journey.body": "Mi carrera empezó en la primera línea: la atención directa al cliente. Fue ahí donde aprendí a escuchar de verdad, una habilidad que más tarde se convirtió en el motor de mi creatividad durante la carrera de <strong>Comunicación Audiovisual</strong>. Entender qué necesita la gente fue la base sobre la que construí mi experiencia en producción y gestión de crisis. Hoy, aplico toda esa trayectoria en el mundo del <strong>marketing y las redes sociales</strong>: creando estrategias que, más que vender, conectan, resuelven y aportan valor real. Trabajo con equipos y proyectos donde la coherencia y la honestidad son las reglas del juego.",
+                "w1.title": "Community Manager & Content Creator",
+                "w1.desc": "Creadora de contenido viral: responsable de hitos de +3M de visualizaciones y estrategias de crecimiento acelerado.",
+                "w2.title": "Contenido UGC",
+                "w2.desc": "Creadora de contenido UGC enfocado en la conversión real: convierto productos en historias que el usuario final quiere ver y comprar.",
+                "w3.title": "Desarrollo Web & Arquitectura Digital",
+                "w3.desc": "Tu presencia online, optimizada y a medida",
+                "w4.title": "Producción Audiovisual",
+                "w4.desc": "Gestión de equipos +30 personas y ejecución de proyectos de alto impacto cultural.",
+                "w5.title": "Community Building",
+                "w5.desc": "Especialista en la creación y dinamización de comunidades, con experiencia gestionando eventos.",
+                "wins.btn": "Ver Proyecto",
+                "w6.title": "Asesorías & Formación",
+                "w6.desc": "Sesiones online personalizadas: IA, RRSS, edición de vídeo, estrategia y marca personal.",
+                "w6.btn": "Ver Servicios",
+                "connect.gmail": "¿No se abre Gmail?",
+                "connect.copy": "Copiar email",
+                "vinyl.play": "▶ Play",
+                "vinyl.pause": "⏸ Pausar",
+                "copied": "¡Copiado!",
+                "ticker": ["Bridging brands, people and experiences","Estrategia Digital & Social Media","Producción Audiovisual","Formación & Comunidad","Conectando marcas con personas desde Euskadi"]
+            },
+            en: {
+                "hero.desc": "I turn visions into audiovisual realities. My work is not just about producing — it is about bridging your business strategy with the way you connect with your audience. I work with technical precision, but always with my eyes on what truly matters: <strong>people.</strong>",
+                "hero.cta": "Explore my work",
+                "journey.title": "MY journey",
+                "journey.quote": "\"People will forget what you said, people will forget what you did, but people will never forget how you made them feel.\" — <em>Maya Angelou</em>",
+                "services.title": "WHAT I CAN DO FOR YOU",
+                "s1.title": "Digital & Social Strategy",
+                "s1.desc": "I handle your brand marketing end-to-end. From editorial calendars and social media management to SEO/SEM optimisation — so your online presence does not just exist, it works.",
+                "s2.title": "Content Creator",
+                "s2.desc": "I film, edit and direct audiovisual content tailored for social media. My goal is that your videos have the technical quality your brand needs and the pace the algorithms demand to retain your audience.",
+                "s3.title": "Training & Advice",
+                "s3.desc": "Specialist in corporate training and client management. I draw on years of direct customer experience to teach you or your team how to manage communities, handle crises and genuinely connect with the people on the other side.",
+                "wins.title": "WHAT I DO",
+                "connect.title": "LET US CONNECT",
+                "connect.location": "Location: Eibar, Basque Country",
+                "connect.cta": "Feel like it? Write to me directly and I will get back to you as soon as possible.",
+                "connect.btn": "Contact me",
+                "journey.body": "My career started on the front line: direct customer service. That is where I learned to truly listen — a skill that later became the engine of my creativity during my Audiovisual Communication degree. Understanding what people need was the foundation on which I built my experience in production and crisis management. Today, I apply that entire journey to <strong>marketing and social media</strong>: creating strategies that connect, solve and deliver real value. I work with teams and projects where coherence and honesty are the ground rules.",
+                "w1.title": "Community Manager & Content Creator",
+                "w1.desc": "Viral content creator: responsible for milestones of +3M views and accelerated growth strategies.",
+                "w2.title": "UGC Content",
+                "w2.desc": "UGC content creator focused on real conversion: I turn products into stories that the end user wants to see and buy.",
+                "w3.title": "Web Development & Digital Architecture",
+                "w3.desc": "Your online presence, optimised and tailored.",
+                "w4.title": "Audiovisual Production",
+                "w4.desc": "Managing teams of 30+ people and executing high cultural impact projects.",
+                "w5.title": "Community Building",
+                "w5.desc": "Specialist in creating and energising communities, with experience managing events.",
+                "wins.btn": "View Project",
+                "w6.title": "Mentoring & Training",
+                "w6.desc": "Personalised online sessions: AI, social media, video editing, strategy and personal brand.",
+                "w6.btn": "View Services",
+                "connect.gmail": "Gmail not opening?",
+                "connect.copy": "Copy email",
+                "vinyl.play": "▶ Play",
+                "vinyl.pause": "⏸ Pause",
+                "copied": "Copied!",
+                "ticker": ["Bridging brands, people and experiences","Digital & Social Media Strategy","Audiovisual Production","Training & Community","Connecting brands with people from the Basque Country"]
+            }
+        };
+
+        let currentLang = "es";
         function changeLanguage(lang) {
+            currentLang = lang;
             document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.documentElement.lang = lang;
+            const t = i18n[lang];
+
+            // Translate all data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+
+            // Update vinyl button
+            const vBtn = document.getElementById('vinyl-btn');
+            if (vBtn) {
+                const isRunning = vBtn.textContent.includes('Pausar') || vBtn.textContent.includes('Pause');
+                vBtn.textContent = t[isRunning ? 'vinyl.pause' : 'vinyl.play'];
+            }
+
+            // Update ticker
+            const ticker = document.getElementById('ticker-content');
+            if (ticker) {
+                const items = [...t.ticker, ...t.ticker];
+                ticker.innerHTML = items.map((s, i) => `<span>${s}</span>`).join('');
+            }
         }
 
         // Copiar email como alternativa si mailto: no abre ningún cliente
@@ -655,52 +691,34 @@
             const email = 'anna.tol.rod@gmail.com';
             navigator.clipboard.writeText(email).then(() => {
                 const original = btn.textContent;
-                btn.textContent = '¡Copiado!';
+                btn.textContent = i18n[currentLang]['copied'];
                 setTimeout(() => { btn.textContent = original; }, 2000);
             }).catch(() => {
                 btn.textContent = email;
             });
         }
 
-        // === CARRUSEL GENÉRICO POR PÁGINAS (estilo Instagram) ===
+        // === CARRUSEL — avanza de 1 en 1 ===
         function setupCarousel({ trackId, prevId, nextId, perPage }) {
             const track = document.getElementById(trackId);
             const prevBtn = document.getElementById(prevId);
             const nextBtn = document.getElementById(nextId);
-            const cards = Array.from(track.children);
-            const total = cards.length;
-            let page = 0;
+            const total = track.children.length;
+            let idx = 0;
 
-            function getVisible() {
-                return typeof perPage === 'function' ? perPage() : perPage;
-            }
-
-            function totalPages() {
-                return Math.max(Math.ceil(total / getVisible()), 1);
-            }
+            const getVisible = () => typeof perPage === 'function' ? perPage() : perPage;
+            const maxIdx = () => Math.max(total - getVisible(), 0);
 
             function update() {
-                const visible = getVisible();
                 const card = track.children[0];
-                const trackStyles = getComputedStyle(track);
-                const gap = parseFloat(trackStyles.gap) || 0;
-                const step = (card.getBoundingClientRect().width + gap) * visible;
-                track.style.transform = `translateX(${-step * page}px)`;
+                const gap = parseFloat(getComputedStyle(track).gap) || 0;
+                const step = card.getBoundingClientRect().width + gap;
+                track.style.transform = `translateX(${-step * idx}px)`;
             }
 
-            function next() {
-                page = (page + 1) % totalPages();
-                update();
-            }
-
-            function prev() {
-                page = (page - 1 + totalPages()) % totalPages();
-                update();
-            }
-
-            nextBtn.addEventListener('click', next);
-            prevBtn.addEventListener('click', prev);
-            window.addEventListener('resize', () => { page = 0; update(); });
+            nextBtn.addEventListener('click', () => { idx = idx >= maxIdx() ? 0 : idx + 1; update(); });
+            prevBtn.addEventListener('click', () => { idx = idx <= 0 ? maxIdx() : idx - 1; update(); });
+            window.addEventListener('resize', () => { idx = 0; update(); });
             update();
         }
 
@@ -722,55 +740,17 @@
             perPage: visibleWinCards
         });
 
-        setupCarousel({
-            trackId: 'test-track',
-            prevId: 'test-prev',
-            nextId: 'test-next',
-            perPage: visibleTestCards
-        });
-
         // === VINILO PLAY/PAUSE ===
-        // === VINILO PLAY/PAUSE ===
-        (function() {
-            const disc      = document.querySelector('.vinyl-disc');
-            const orbitRing = document.querySelector('.orbit-ring');
-            const logos     = document.querySelectorAll('.orbit-logo');
-            const btn       = document.getElementById('vinyl-btn');
-            const arms      = document.querySelectorAll('.orbit-arm');
-
-            let angle = 0;
-            let playing = false;
-            let lastTime = null;
-            const speed = 360 / 8000; // deg per ms (8s per revolution)
-
-            function tick(ts) {
-                if (!playing) return;
-                if (lastTime === null) lastTime = ts;
-                const delta = ts - lastTime;
-                lastTime = ts;
-                angle = (angle + speed * delta) % 360;
-
-                // Rotate disc and ring
-                disc.style.transform = `rotate(${angle}deg)`;
-                orbitRing.style.transform = `rotate(${angle}deg)`;
-
-                // Counter-rotate each logo to stay upright
-                logos.forEach(logo => {
-                    logo.style.transform = `rotate(${-angle}deg)`;
-                });
-
-                requestAnimationFrame(tick);
-            }
-
-            window.toggleVinyl = function() {
-                playing = !playing;
-                btn.textContent = playing ? '⏸ Pausar' : '▶ Play';
-                if (playing) {
-                    lastTime = null;
-                    requestAnimationFrame(tick);
-                }
-            };
-        })();
+        function toggleVinyl() {
+            const disc   = document.querySelector('.vinyl-disc');
+            const ring   = document.querySelector('.orbit-ring');
+            const btn    = document.getElementById('vinyl-btn');
+            const isRunning = disc.style.animationPlayState === 'running';
+            const state = isRunning ? 'paused' : 'running';
+            disc.style.animationPlayState = state;
+            ring.style.animationPlayState = state;
+            btn.textContent = i18n[currentLang]['vinyl.' + (isRunning ? 'play' : 'pause')];
+        }
     </script>
 
 </body>

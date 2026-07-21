@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido UGC | Anna Toledo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ffc4e1; --brown: #3f221b; --cream: #f9f7ed; --green: #b6d545; --font-main: 'Poppins', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--brown); color: var(--cream); min-height: 100vh; }
+
+        /* Lang switcher */
+        .lang-container { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .lang-button { background: var(--brown); border: 2px solid var(--pink); padding: 8px 16px; border-radius: 25px; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-main); color: var(--pink); }
+        .dropdown-content { display: none; position: absolute; right: 0; background: var(--brown); border: 2px solid var(--pink); width: 130px; margin-top: 5px; border-radius: 10px; overflow: hidden; }
+        .dropdown-content a { display: block; padding: 10px; text-decoration: none; color: var(--pink); font-weight: 600; font-family: var(--font-main); }
+        .dropdown-content a:hover { background: var(--pink); color: var(--brown); }
+        .lang-container:hover .dropdown-content { display: block; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 24px 40px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--pink); transition: opacity 0.2s; }
+        .back-link:hover { opacity: 0.6; }
+        .project-hero { padding: 0 40px 60px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; max-width: 700px; color: var(--pink); }
+        .project-hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; color: var(--cream); }
+        .project-meta { font-size: 0.9rem; font-weight: 600; text-align: right; line-height: 1.8; opacity: 0.6; }
+        .divider { height: 3px; background-color: var(--pink); margin: 0 40px 60px; opacity: 0.3; }
+        .moodboard { padding: 0 40px 80px; display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 70px; gap: 16px; }
+        .block { border-radius: 4px; overflow: hidden; position: relative; }
+        .img-block { background-color: #2a1510; display: flex; align-items: center; justify-content: center; }
+        .img-block .placeholder-label { font-size: 0.7rem; font-weight: 600; opacity: 0.3; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 10px; color: var(--cream); }
+        .img-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .text-block { display: flex; flex-direction: column; justify-content: center; padding: 20px; }
+        .text-block.bg-cream { background-color: var(--cream); color: var(--brown); }
+        .text-block.bg-pink { background-color: var(--pink); color: var(--brown); }
+        .text-block.bg-green { background-color: var(--green); color: var(--brown); }
+        .text-block.bg-dark { background-color: #2a1510; color: var(--cream); }
+        .text-block h2 { font-size: clamp(1rem, 2.5vw, 2rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 10px; }
+        .text-block h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .text-block p { font-size: 0.85rem; font-weight: 400; line-height: 1.6; opacity: 0.85; }
+        .text-block .stat { font-size: clamp(1.4rem, 2.8vw, 3rem); font-weight: 900; line-height: 1.1; word-break: break-word; }
+        .text-block .stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-top: 6px; line-height: 1.4; }
+        .tag { display: inline-block; background-color: var(--pink); color: var(--brown); font-size: 0.65rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 10px; width: fit-content; }
+        .tag.dark { background-color: var(--brown); color: var(--pink); }
+
+        /* === CAJA MÓVIL === */
+        .phone-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            overflow: visible;
+            padding: 8px;
+        }
+        .phone-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 36px;
+            border: 6px solid #e0ddd8;
+            box-shadow:
+                0 0 0 1px #aaa,
+                0 12px 40px rgba(0,0,0,0.45);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .phone-notch {
+            width: 50px;
+            height: 8px;
+            background: #e0ddd8;
+            border-radius: 0 0 8px 8px;
+            margin: 6px auto 0;
+            flex-shrink: 0;
+            z-index: 2;
+            position: relative;
+        }
+        .phone-screen {
+            flex: 1;
+            overflow: hidden;
+            margin: 4px 3px 4px;
+            border-radius: 6px;
+            background: #111;
+            position: relative;
+        }
+        .phone-screen img,
+        .phone-screen video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .phone-screen .phone-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+            padding: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .phone-bar {
+            width: 36px;
+            height: 4px;
+            background: #e0ddd8;
+            border-radius: 4px;
+            margin: 4px auto 6px;
+            flex-shrink: 0;
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .project-footer { border-top: 3px solid var(--pink); border-color: rgba(255,196,225,0.3); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .project-footer p { font-weight: 600; font-size: 0.9rem; opacity: 0.4; color: var(--cream); }
+        .next-project { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--pink); transition: opacity 0.2s; }
+        .next-project:hover { opacity: 0.6; }
+        .cta-btn { display: inline-block; margin-top: 12px; padding: 8px 18px; background: transparent; border: 2px solid var(--brown); color: var(--brown); font-family: var(--font-main); font-weight: 900; font-size: clamp(0.65rem, 1.2vw, 0.8rem); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 30px; transition: opacity 0.2s; white-space: normal; word-break: break-word; }
+        .cta-btn:hover { opacity: 0.65; }
+        @media (max-width: 768px) {
+            .project-hero, .moodboard, .project-footer { padding-left: 20px; padding-right: 20px; }
+            .divider { margin-left: 20px; margin-right: 20px; }
+            .moodboard { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+            .block { grid-column: auto !important; grid-row: auto !important; }
+        }
+        /* === PHONES ROW === */
+        .phones-section {
+            padding: 0 40px 60px;
+        }
+        .phone-row {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .phone-unit {
+            flex: 1;
+            max-width: 200px;
+        }
+        /* Alternating heights for natural feel */
+        .phone-unit:nth-child(1) .phone-frame { height: 400px; }
+        .phone-unit:nth-child(2) .phone-frame { height: 400px; }
+        .phone-unit:nth-child(3) .phone-frame { height: 400px; }
+        .phone-unit:nth-child(4) .phone-frame { height: 400px; }
+
+        /* Text grid below */
+        .text-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            padding: 0 40px 80px;
+        }
+        .text-card {
+            padding: 30px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+        .text-card.bg-pink  { background: var(--pink); color: var(--brown); }
+        .text-card.bg-dark  { background: #2a1510; color: var(--cream); }
+        .text-card.bg-green { background: var(--green); color: var(--brown); }
+        .text-card h2 { font-size: clamp(1rem, 2vw, 1.6rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+        .text-card h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; }
+        .text-card p { font-size: 0.85rem; line-height: 1.6; opacity: 0.85; }
+        .stat { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 900; line-height: 1.1; }
+        .stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-top: 4px; }
+
+        @media (max-width: 768px) {
+            .phone-row { flex-wrap: wrap; }
+            .phone-unit { max-width: 45%; }
+            .text-grid { grid-template-columns: 1fr 1fr; }
+            .phones-section, .text-grid { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-container">
+        <div class="lang-button">🌐 <span id="current-lang">ES</span></div>
+        <div class="dropdown-content">
+            <a href="#" onclick="changeLanguage('es'); return false;">ES Español</a>
+            <a href="#" onclick="changeLanguage('en'); return false;">EN English</a>
+        </div>
+    </div>
+
+    <a href="Portfolio web.html" class="back-link" onclick="if(document.referrer) { history.back(); return false; }"><span data-i18n="back">← Volver al inicio</span></a>
+    <div class="project-hero reveal">
+        <h1 data-i18n="title">Contenido <em>UGC</em></h1>
+        <div class="project-meta">
+            <p data-i18n="meta1">Identidad Visual</p>
+            <p data-i18n="meta2">Estrategia de salida</p>
+            <p>2026</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!-- PHONES ROW — como el ejemplo -->
+    <div class="phones-section">
+        <div class="phone-row">
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/marca1.jpg" alt="" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 marca1.jpg</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/marca2.jpg" alt="" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 marca2.jpg</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/marca3.jpg" alt="" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 marca3.jpg</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+            <div class="phone-unit">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="fotos/marca4.jpg" alt="" onerror="this.style.display='none'">
+                        <div class="phone-placeholder">📱 marca4.jpg</div>
+                    </div>
+                    <div class="phone-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEXTO DEBAJO -->
+    <div class="text-grid">
+        <div class="text-card bg-pink">
+            <span class="tag dark" data-i18n="tag1">Branding</span>
+            <h2 data-i18n="h2_1">De la estrategia <em>al impacto UGC</em></h2>
+            <p data-i18n="p1">Ayudo a marcas a conectar mediante contenido que no parece publicidad. Produzco piezas con lenguaje humano, dinámico y auténtico.</p>
+        </div>
+        <div class="text-card bg-dark">
+            <div class="stat" style="color:var(--pink);">Human→Centric</div>
+            <div class="stat-label" style="color:var(--pink);" data-i18n="stat1">Contenido generado por personas para personas.</div>
+        </div>
+        <div class="text-card bg-green">
+            <span class="tag dark" data-i18n="tag2">Proceso</span>
+            <p style="color:var(--brown); font-weight:700; line-height:2;" data-i18n="p2">Briefing · Naming · Identidad · Contenido · Lanzamiento</p>
+        </div>
+        <div class="text-card bg-dark">
+            <span class="tag" data-i18n="tag3">¿Empezamos?</span>
+            <h2 style="color:var(--pink);" data-i18n="h2_2">Tu marca, <em style="color:var(--cream);">ahora</em></h2>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=anna.tol.rod@gmail.com&amp;su=Hablemos%20de%20UGC" target="_blank" rel="noopener" class="cta-btn" style="color:var(--pink); border-color:var(--pink);" data-i18n="cta">Escríbeme →</a>
+        </div>
+    </div>
+
+
+    <div class="project-footer">
+        <p>Anna Toledo · Contenido UGC</p>
+        <a href="dweb.html" class="next-project" data-i18n="next">Siguiente proyecto →</a>
+    </div>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*60); });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => obs.observe(el));
+
+        // Lang switcher
+        const i18n = {
+            es: {
+                "back":  "← Volver al inicio",
+                "title": "Contenido <em>UGC</em>",
+                "meta1": "Identidad Visual",
+                "meta2": "Estrategia de salida",
+                "tag1":  "Branding",
+                "h2_1":  "De la estrategia <em>al impacto UGC</em>",
+                "p1":    "Ayudo a marcas a conectar mediante contenido que no parece publicidad. Produzco piezas con lenguaje humano, dinámico y auténtico.",
+                "stat1": "Contenido generado por personas para personas.",
+                "tag2":  "Proceso",
+                "p2":    "Briefing · Naming · Identidad · Contenido · Lanzamiento",
+                "tag3":  "¿Empezamos?",
+                "h2_2":  "Tu marca, <em style='color:var(--cream);'>ahora</em>",
+                "cta":   "Escríbeme →",
+                "next":  "Siguiente proyecto →"
+            },
+            en: {
+                "back":  "← Back to home",
+                "title": "UGC <em>Content</em>",
+                "meta1": "Visual Identity",
+                "meta2": "Launch Strategy",
+                "tag1":  "Branding",
+                "h2_1":  "From strategy <em>to UGC impact</em>",
+                "p1":    "I help brands connect through content that does not feel like advertising. I create pieces with human, dynamic and authentic language.",
+                "stat1": "Content created by people for people.",
+                "tag2":  "Process",
+                "p2":    "Briefing · Naming · Identity · Content · Launch",
+                "tag3":  "Shall we start?",
+                "h2_2":  "Your brand, <em style='color:var(--cream);'>now</em>",
+                "cta":   "Write to me →",
+                "next":  "Next project →"
+            }
+        };
+        function changeLanguage(lang) {
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.documentElement.lang = lang;
+            const t = i18n[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+        }
+    </script>
+
+</body>
+</html>
